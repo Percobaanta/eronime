@@ -20,10 +20,6 @@ export default async function animatedDetail({ params }) {
     notFound();
   }
 
-  if (!dataApiDoodstream && !dataApiStreamtape) {
-    notFound();
-  }
-
   const getInfo = {
     ...dataApiAnimated,
     ...dataApiDoodstream,

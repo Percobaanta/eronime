@@ -16,13 +16,9 @@ export default async function pornDetail({ params }) {
     (doc) => doc.name.replace(".mp4", "") === id
   );
 
-  // if (!dataApiPorn) {
-  //   notFound();
-  // }
-
-  // if (!dataApiDoodstream && !dataApiStreamtape) {
-  //   notFound();
-  // }
+  if (!dataApiPorn) {
+    notFound();
+  }
 
   const getInfo = {
     ...dataApiPorn,

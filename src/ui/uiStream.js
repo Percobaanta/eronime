@@ -1,10 +1,15 @@
 "use client";
 
-import Button from "@/ui/uiButton";
+import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
+import Button from "@/ui/uiButton";
 
 export default function Stream({ getInfo, path }) {
   const [bookmarks, setBookmarks] = useState([]);
+
+  // if (!getInfo?.id) {
+  //   notFound();
+  // }
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("bookmark") || "[]");
@@ -16,7 +21,7 @@ export default function Stream({ getInfo, path }) {
   return (
     <>
       <div className="bg-black flex justify-center rounded-lg! shadow drop-shadow p-3 mb-5">
-        {/* {getInfo?.file_code ? (
+        {getInfo?.file_code ? (
           <iframe
             className="md:w-7/12 w-full aspect-video"
             src={`https://myvidplay.com/e/${getInfo?.file_code}`}
@@ -37,7 +42,7 @@ export default function Stream({ getInfo, path }) {
             <i className="bi bi-gear-wide-connected text-4xl" />
             <p className="text-xl font-bold">Under maintenance</p>
           </div>
-        )} */}
+        )}
       </div>
 
       <div className="flex flex-col gap-4 mb-10">
