@@ -16,13 +16,13 @@ export default async function pornDetail({ params }) {
     (doc) => doc.name.replace(".mp4", "") === id
   );
 
-  if (!dataApiPorn) {
-    notFound();
-  }
+  // if (!dataApiPorn) {
+  //   notFound();
+  // }
 
-  if (!dataApiDoodstream && !dataApiStreamtape) {
-    notFound();
-  }
+  // if (!dataApiDoodstream && !dataApiStreamtape) {
+  //   notFound();
+  // }
 
   const getInfo = {
     ...dataApiPorn,
@@ -30,7 +30,6 @@ export default async function pornDetail({ params }) {
     ...dataApiStreamtape,
   };
 
-  console.log(dataApiPorn);
   return (
     <>
       <Controller
