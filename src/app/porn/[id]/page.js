@@ -10,10 +10,19 @@ export default async function pornDetail({ params }) {
   const { getApiStreamtape } = await apiStreamtape();
   const { getApiPorn } = await apiPorn();
 
-  const dataApiPorn = getApiPorn?.find((doc) => doc.id === id);
-  const dataApiDoodstream = getApiDoodstream?.find((doc) => doc.title === id);
+  const dataApiPorn = getApiPorn?.find(
+    (doc) => String(doc.id).trim() === String(id).trim()
+  );
+
+  const dataApiDoodstream = getApiDoodstream?.find(
+    (doc) => String(doc.title).trim() === String(id).trim()
+  );
+
   const dataApiStreamtape = getApiStreamtape?.find(
-    (doc) => doc.name.replace(".mp4", "") === id
+    (doc) =>
+      String(doc.name || "")
+        .replace(/\.mp4$/i, "")
+        .trim() === String(id).trim()
   );
 
   if (!dataApiPorn) {

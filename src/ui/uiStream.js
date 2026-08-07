@@ -1,15 +1,10 @@
 "use client";
 
-import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 import Button from "@/ui/uiButton";
 
 export default function Stream({ getInfo, path }) {
   const [bookmarks, setBookmarks] = useState([]);
-
-  // if (!getInfo?.id) {
-  //   notFound();
-  // }
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("bookmark") || "[]");
@@ -48,7 +43,7 @@ export default function Stream({ getInfo, path }) {
       <div className="flex flex-col gap-4 mb-10">
         <div className="flex flex-col gap-1">
           <p className="text-white font-semibold capitalize">
-            {getInfo?.xtitle}
+            {getInfo?.xtitle} - {getInfo?.file_code} - {getInfo?.linkid}
           </p>
 
           <p className="text-base-400 text-xs">

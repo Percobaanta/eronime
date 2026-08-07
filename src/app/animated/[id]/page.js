@@ -10,10 +10,19 @@ export default async function animatedDetail({ params }) {
   const { getApiStreamtape } = await apiStreamtape();
   const { getApiAnimated } = await apiAnimated();
 
-  const dataApiAnimated = getApiAnimated?.find((doc) => doc.id === id);
-  const dataApiDoodstream = getApiDoodstream?.find((doc) => doc.title === id);
+  const dataApiAnimated = getApiPorn?.find(
+    (doc) => String(doc.id).trim() === String(id).trim()
+  );
+
+  const dataApiDoodstream = getApiDoodstream?.find(
+    (doc) => String(doc.title).trim() === String(id).trim()
+  );
+
   const dataApiStreamtape = getApiStreamtape?.find(
-    (doc) => doc.name.replace(".mp4", "") === id
+    (doc) =>
+      String(doc.name || "")
+        .replace(/\.mp4$/i, "")
+        .trim() === String(id).trim()
   );
 
   if (!dataApiAnimated) {
