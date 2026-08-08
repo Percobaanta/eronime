@@ -17,7 +17,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en" className={`${googleSansAlt.className} h-full antialiased`}>
       <body>
-        <div className="md:w-11/12 w-full p-3 mx-auto">{children}</div>
+        <div className="container p-3 mx-auto">{children}</div>
       </body>
     </html>
   );

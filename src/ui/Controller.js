@@ -71,7 +71,7 @@ export default function Controller({ getApi, getInfo, path, view }) {
         <>
           <Navbar path={path} setSearch={setSearch} />
 
-          {/* <Filter
+          <Filter
             path={path}
             getApi={getApi}
             getSort={getSort}
@@ -80,20 +80,20 @@ export default function Controller({ getApi, getInfo, path, view }) {
             setCreator={setCreator}
             getTag={getTag}
             setTag={setTag}
-          /> */}
+          />
 
-          <div className="flex flex-col items-center justify-center w-full my-24">
-            <i className="bi bi-gear-wide-connected text-4xl mb-3" />
-            <p className="text-xlgl font-semibold">Maintenance</p>
-          </div>
-
-          {/* <Post
+          <Post
             path={path}
             getApi={getApi}
             getSort={getSort}
             getCreator={getCreator}
             getTag={getTag}
-          /> */}
+          />
+
+          {/* <div className="flex flex-col items-center justify-center w-full my-24">
+              <i className="bi bi-gear-wide-connected text-4xl mb-3" />
+              <p className="text-xlgl font-semibold">Maintenance</p>
+            </div> */}
         </>
       )}
 

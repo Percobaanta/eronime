@@ -46,57 +46,20 @@ export default function Post({ path, getApi, getSort, getCreator, getTag }) {
 
   return (
     <>
-      {/* --- porn label --- */}
-      {path == "porn" && (
-        <div className="mb-5">
-          <p className="text-white font-bold">Watch Porn videos</p>
-          <span className="text-zinc-400 text-xs">
-            Watch new and popular porn videos
-          </span>
-        </div>
-      )}
-
-      {/* --- animated label --- */}
-      {path == "animated" && (
-        <div className="mb-5">
-          <p className="text-white font-bold">Watch Animated videos</p>
-          <span className="text-zinc-400 text-xs">
-            Watch new and popular animated ,3d, ai videos.
-          </span>
-        </div>
-      )}
-
-      {/* --- hentai label --- */}
-      {path == "hentai" && (
-        <div className="mb-5">
-          <p className="text-white font-bold">Watch Hentai videos</p>
-          <span className="text-zinc-400 text-xs">
-            Discover popular hentai videos.
-          </span>
-        </div>
-      )}
-
-      {/* --- cosplay label --- */}
-      {path == "cosplay" && (
-        <div className="mb-5">
-          <p className="text-white font-bold">Image Cosplay Collection</p>
-          <span className="text-zinc-400 text-xs">
-            Beautiful girls clothed as your favorite characters.
-          </span>
-        </div>
-      )}
-
-      <div className={`grid grid-cols-2 md:grid-cols-6 gap-x-3 gap-y-5 mb-10`}>
-        {result.slice(0, loadCount).map((doc) => (
+      <div
+        className={`${
+          path === "hentai" || path === "cosplay"
+            ? "grid-cols-3 md:grid-cols-6"
+            : "grid-cols-2 md:grid-cols-4"
+        } grid gap-x-2 gap-y-4 mb-10`}
+      >
+        {result.slice(0, loadCount).map((doc, i) => (
           <Link
             key={doc.id}
             href={`/${path}/${doc.id}`}
             className="w-full! h-min! active:scale-98"
           >
-            <div
-              key={doc.id}
-              className="aspect-square overflow-hidden relative rounded-lg"
-            >
+            <div key={i}>
               <Image
                 src={
                   path === "cosplay"
@@ -109,15 +72,17 @@ export default function Post({ path, getApi, getSort, getCreator, getTag }) {
                 quality={75}
                 width={512}
                 height={512}
-                className="aspect-square w-full object-cover rounded-lg"
+                className={`${
+                  path === "hentai" || path === "cosplay"
+                    ? "aspect-2/2.75"
+                    : "aspect-5/3"
+                }  w-full object-cover rounded-lg`}
               />
             </div>
 
             <div className="flex flex-col py-2">
               <div className="flex gap-2 mb-1 text-zinc-400 text-xs font-light">
                 <i className="bi bi-eye-fill" aria-hidden="true" />
-
-                {new Date(Number(doc?.id)).toISOString().split("T")[0]}
 
                 <span>
                   {doc?.id

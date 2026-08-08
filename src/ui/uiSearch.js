@@ -7,8 +7,6 @@ import Button from "@/ui/uiButton";
 export default function Search({ getApi, getSearch = "" }) {
   const [visibleCount, setVisibleCount] = useState(15);
 
-  console.log(getApi);
-
   const searchData = getApi?.filter((doc) =>
     doc?.xtitle?.toLowerCase().includes(getSearch.toLowerCase())
   );

@@ -14,11 +14,7 @@ export default function Filter({
   getTag,
   setTag,
 }) {
-  const [getFilter, setFilter] = useState(
-    view === "stream" || view === "gallery" || view === "bookmark"
-      ? false
-      : true
-  );
+  const [getFilter, setFilter] = useState(false);
 
   const creatorCount = getApi?.reduce((acc, item) => {
     item.xcreator?.forEach((creator) => {
@@ -33,6 +29,31 @@ export default function Filter({
     });
     return acc;
   }, {});
+
+  const pageInfoArray = [
+    {
+      type: "porn",
+      title: "Watch Porn videos",
+      desc: "Watch new and popular porn videos",
+    },
+    {
+      type: "animated",
+      title: "Watch Animated videos",
+      desc: "Watch new and popular animated, 3d, ai videos.",
+    },
+    {
+      type: "hentai",
+      title: "Watch Animated videos",
+      desc: "Watch new and popular animated, 3d, ai videos.",
+    },
+    {
+      type: "cosplay",
+      title: "Image Cosplay Collection",
+      desc: "Beautiful girls clothed as your favorite characters.",
+    },
+  ];
+
+  const pageInfo = pageInfoArray.find((f) => f.type === path);
 
   return (
     <div className="flex flex-col gap-3 mb-5">
@@ -66,6 +87,43 @@ export default function Filter({
           }
         ></Button>
       </div>
+
+      {/* --- popular tags --- */}
+      {!getFilter && (
+        <div className="">
+          {pageInfo && (
+            <div className="my-2">
+              <p className="font-bold text-white">{pageInfo.title}</p>
+              <span className="text-xs text-zinc-400">{pageInfo.desc}</span>
+            </div>
+          )}
+
+          <div className="flex flex-nowrap overflow-y-scroll scrollbar-rounded gap-2 py-1">
+            <Button
+              size="sm"
+              variant="primary"
+              className="justify-between! flex-none! rounded!"
+            >
+              Recomended
+            </Button>
+
+            {Object.entries(tagCount)
+              .slice(0, 10)
+              .sort(([a], [b]) => a.localeCompare(b))
+              .map(([doc, total]) => (
+                <Button
+                  key={doc}
+                  size="sm"
+                  variant={getCreator === doc ? "baseActive" : "base"}
+                  className="flex-none rounded!"
+                  onClick={() => setTag(getTag === doc ? "" : doc)}
+                >
+                  <span>{doc}</span>
+                </Button>
+              ))}
+          </div>
+        </div>
+      )}
 
       {getFilter && (
         <div className="bg-zinc-800 overflow-hidden rounded-lg">
