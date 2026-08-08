@@ -4,15 +4,11 @@ import { apiStreamtape } from "@/api/apiStreamtape";
 import { apiAnimated } from "@/api/apiAnimated";
 import Controller from "@/ui/Controller";
 
-export default async function animatedDetail({ params }) {
+export default async function AnimatedInfo({ params }) {
   const { id } = await params;
   const { getApiDoodstream } = await apiDoodstream();
   const { getApiStreamtape } = await apiStreamtape();
   const { getApiAnimated } = await apiAnimated();
-
-  const dataApiAnimated = getApiPorn?.find(
-    (doc) => String(doc.id).trim() === String(id).trim()
-  );
 
   const dataApiDoodstream = getApiDoodstream?.find(
     (doc) => String(doc.title).trim() === String(id).trim()
@@ -25,14 +21,18 @@ export default async function animatedDetail({ params }) {
         .trim() === String(id).trim()
   );
 
+  const dataApiAnimated = getApiAnimated?.find(
+    (doc) => String(doc.id).trim() === String(id).trim()
+  );
+
   if (!dataApiAnimated) {
     notFound();
   }
 
-  const getInfo = {
-    ...dataApiAnimated,
+  const mergeData = {
     ...dataApiDoodstream,
     ...dataApiStreamtape,
+    ...dataApiAnimated,
   };
 
   return (
@@ -41,7 +41,7 @@ export default async function animatedDetail({ params }) {
         path={"animated"}
         view={"stream"}
         getApi={getApiAnimated}
-        getInfo={getInfo}
+        getInfo={mergeData}
       />
     </>
   );

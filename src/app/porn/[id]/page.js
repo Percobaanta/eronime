@@ -4,15 +4,11 @@ import { apiStreamtape } from "@/api/apiStreamtape";
 import { apiPorn } from "@/api/apiPorn";
 import Controller from "@/ui/Controller";
 
-export default async function pornDetail({ params }) {
+export default async function PornInfo({ params }) {
   const { id } = await params;
   const { getApiDoodstream } = await apiDoodstream();
   const { getApiStreamtape } = await apiStreamtape();
   const { getApiPorn } = await apiPorn();
-
-  const dataApiPorn = getApiPorn?.find(
-    (doc) => String(doc.id).trim() === String(id).trim()
-  );
 
   const dataApiDoodstream = getApiDoodstream?.find(
     (doc) => String(doc.title).trim() === String(id).trim()
@@ -25,14 +21,18 @@ export default async function pornDetail({ params }) {
         .trim() === String(id).trim()
   );
 
+  const dataApiPorn = getApiPorn?.find(
+    (doc) => String(doc.id).trim() === String(id).trim()
+  );
+
   if (!dataApiPorn) {
     notFound();
   }
 
-  const getInfo = {
-    ...dataApiPorn,
+  const mergeData = {
     ...dataApiDoodstream,
     ...dataApiStreamtape,
+    ...dataApiPorn,
   };
 
   return (
@@ -41,7 +41,7 @@ export default async function pornDetail({ params }) {
         path={"porn"}
         view={"stream"}
         getApi={getApiPorn}
-        getInfo={getInfo}
+        getInfo={mergeData}
       />
     </>
   );

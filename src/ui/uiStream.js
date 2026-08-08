@@ -34,8 +34,8 @@ export default function Stream({ getInfo, path }) {
           ></iframe>
         ) : (
           <div className="flex flex-col items-center justify-center w-full my-24">
-            <i className="bi bi-gear-wide-connected text-4xl" />
-            <p className="text-xl font-bold">Under maintenance</p>
+            <i className="bi bi-database-fill-x text-2xl mb-3" />
+            <p className="text-xs font-semibold">Server Down</p>
           </div>
         )}
       </div>

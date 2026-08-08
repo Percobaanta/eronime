@@ -4,26 +4,35 @@ import { apiStreamtape } from "@/api/apiStreamtape";
 import { apiHentai } from "@/api/apiHentai";
 import Controller from "@/ui/Controller";
 
-export default async function hentaiDetail({ params }) {
+export default async function HentaiInfo({ params }) {
   const { id } = await params;
   const { getApiDoodstream } = await apiDoodstream();
   const { getApiStreamtape } = await apiStreamtape();
   const { getApiHentai } = await apiHentai();
 
-  const dataApiHentai = getApiHentai?.find((doc) => doc.id === id);
-  const dataApiDoodstream = getApiDoodstream?.find((doc) => doc.title === id);
-  const dataApiStreamtape = getApiStreamtape?.find(
-    (doc) => doc.name.replace(".mp4", "") === id
+  const dataApiDoodstream = getApiDoodstream?.find(
+    (doc) => String(doc.title).trim() === String(id).trim()
   );
 
-  if (!dataApiHentai && !dataApiDoodstream && !dataApiStreamtape) {
+  const dataApiStreamtape = getApiStreamtape?.find(
+    (doc) =>
+      String(doc.name || "")
+        .replace(/\.mp4$/i, "")
+        .trim() === String(id).trim()
+  );
+
+  const dataApiHentai = getApiHentai?.find(
+    (doc) => String(doc.id).trim() === String(id).trim()
+  );
+
+  if (!dataApiHentai) {
     notFound();
   }
 
-  const getInfo = {
-    ...dataApiHentai,
+  const mergeData = {
     ...dataApiDoodstream,
     ...dataApiStreamtape,
+    ...dataApiHentai,
   };
 
   return (
@@ -32,7 +41,7 @@ export default async function hentaiDetail({ params }) {
         path={"hentai"}
         view={"stream"}
         getApi={getApiHentai}
-        getInfo={getInfo}
+        getInfo={mergeData}
       />
     </>
   );

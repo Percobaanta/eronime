@@ -35,11 +35,13 @@ export default function Filter({
   }, {});
 
   return (
-    <div className="flex flex-col mb-5">
-      <div className="flex flex-row mb-3 gap-3">
+    <div className="flex flex-col gap-3 mb-5">
+      {/* --- menu filter --- */}
+      <div className="flex flex-row gap-3">
         <div className="grid md:grid-cols-12 grid-cols-4 grow gap-3">
           {["porn", "animated", "hentai", "cosplay"].map((doc, i) => {
-            const isActive = path === doc || (path === "/" && doc === "porn");
+            const isActive = path === doc;
+
             return (
               <Button
                 key={i}
@@ -68,21 +70,22 @@ export default function Filter({
       {getFilter && (
         <div className="bg-zinc-800 overflow-hidden rounded-lg">
           <div className="flex flex-col md:max-h-64 max-h-48 overflow-y-scroll">
-            {/* --- SORT SECTION --- */}
+            {/* --- sort section --- */}
             <div className="grid md:grid-cols-6 grid-cols-2 gap-1 w-full p-3">
-              <div className="md:col-span-6 col-span-2 mb-1">
-                <div className="text-zinc-200 flex gap-2 text-xs font-bold capitalize ml-2">
+              <div className="md:col-span-6 col-span-2">
+                <div className="text-zinc-200 flex gap-2 text-xs font-semibold capitalize ml-3">
                   <i className="bi bi-funnel-fill" aria-hidden="true" />
                   <span>sort by</span>
                 </div>
               </div>
 
-              {/* Refactor tombol sort agar lebih hemat baris */}
               {[
-                { id: "date", label: "date", icon: "arrow-down" },
-                { id: "date_down", label: "date", icon: "arrow-up" },
                 { id: "title", label: "title", icon: "arrow-down" },
                 { id: "title_down", label: "title", icon: "arrow-up" },
+                { id: "view", label: "view", icon: "arrow-down" },
+                { id: "view_down", label: "view", icon: "arrow-up" },
+                { id: "date", label: "date", icon: "arrow-down" },
+                { id: "date_down", label: "date", icon: "arrow-up" },
               ].map((sortItem) => (
                 <Button
                   key={sortItem.id}
@@ -97,10 +100,10 @@ export default function Filter({
               ))}
             </div>
 
-            {/* --- CREATOR SECTION --- */}
+            {/* --- creator/brand section --- */}
             <div className="grid md:grid-cols-6 grid-cols-2 gap-1 w-full p-3">
-              <div className="md:col-span-6 col-span-2 mb-1">
-                <div className="text-zinc-200 flex gap-2 text-xs font-bold capitalize ml-2">
+              <div className="md:col-span-6 col-span-2">
+                <div className="text-zinc-200 flex gap-2 text-xs font-semibold capitalize ml-3">
                   <i className="bi bi-person-fill" aria-hidden="true" />
                   <span>{path == "cosplay" ? "Model" : "Brand"}</span>
                 </div>
@@ -116,17 +119,16 @@ export default function Filter({
                     className="justify-between! w-full! flex-none!"
                     onClick={() => setCreator(getCreator === doc ? "" : doc)}
                   >
-                    {/* 6. Penyesuaian karena prop 'child' sudah dihapus di Button */}
                     <span>{doc}</span>
                     <span>({total})</span>
                   </Button>
                 ))}
             </div>
 
-            {/* --- TAGS SECTION --- */}
+            {/* --- tags section --- */}
             <div className="grid md:grid-cols-6 grid-cols-1 gap-1 w-full p-3">
-              <div className="md:col-span-6 mb-1">
-                <div className="text-zinc-200 flex gap-2 text-xs font-bold capitalize ml-2">
+              <div className="md:col-span-6">
+                <div className="text-zinc-200 flex gap-2 text-xs font-semibold capitalize ml-3">
                   <i className="bi bi-tag-fill" aria-hidden="true" />
                   <span>tags</span>
                 </div>

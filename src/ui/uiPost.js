@@ -5,13 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Button from "@/ui/uiButton";
 
-export default function Post({
-  path,
-  getApi = [],
-  getSort,
-  getCreator,
-  getTag,
-}) {
+export default function Post({ path, getApi, getSort, getCreator, getTag }) {
   const [loadCount, setLoadCount] = useState(24);
 
   const result = useMemo(() => {
@@ -26,11 +20,25 @@ export default function Post({
     }
 
     if (getSort === "view") {
-      data.sort((a, b) => (b.views || 0) - (a.views || 0));
+      data.sort(
+        (a, b) =>
+          (parseInt(b.id.slice(-4), 10) || 0) -
+          (parseInt(a.id.slice(-4), 10) || 0)
+      );
+    } else if (getSort === "view_down") {
+      data.sort(
+        (a, b) =>
+          (parseInt(a.id.slice(-4), 10) || 0) -
+          (parseInt(b.id.slice(-4), 10) || 0)
+      );
     } else if (getSort === "title") {
       data.sort((a, b) => a.xtitle.localeCompare(b.xtitle));
-    } else if (getSort === "upload") {
-      data.sort((a, b) => new Date(b.uploaded) - new Date(a.uploaded));
+    } else if (getSort === "title_down") {
+      data.sort((a, b) => b.xtitle.localeCompare(a.xtitle));
+    } else if (getSort === "date") {
+      data.sort((a, b) => Number(b.id) - Number(a.id));
+    } else if (getSort === "date_down") {
+      data.sort((a, b) => Number(a.id) - Number(b.id));
     }
 
     return data;
@@ -38,16 +46,17 @@ export default function Post({
 
   return (
     <>
-      {path == "/" ||
-        (path == "porn" && (
-          <div className="mb-5">
-            <p className="text-white font-bold">Watch Porn videos</p>
-            <span className="text-zinc-400 text-xs">
-              Watch new and popular porn videos
-            </span>
-          </div>
-        ))}
+      {/* --- porn label --- */}
+      {path == "porn" && (
+        <div className="mb-5">
+          <p className="text-white font-bold">Watch Porn videos</p>
+          <span className="text-zinc-400 text-xs">
+            Watch new and popular porn videos
+          </span>
+        </div>
+      )}
 
+      {/* --- animated label --- */}
       {path == "animated" && (
         <div className="mb-5">
           <p className="text-white font-bold">Watch Animated videos</p>
@@ -57,6 +66,7 @@ export default function Post({
         </div>
       )}
 
+      {/* --- hentai label --- */}
       {path == "hentai" && (
         <div className="mb-5">
           <p className="text-white font-bold">Watch Hentai videos</p>
@@ -66,6 +76,7 @@ export default function Post({
         </div>
       )}
 
+      {/* --- cosplay label --- */}
       {path == "cosplay" && (
         <div className="mb-5">
           <p className="text-white font-bold">Image Cosplay Collection</p>
@@ -105,6 +116,9 @@ export default function Post({
             <div className="flex flex-col py-2">
               <div className="flex gap-2 mb-1 text-zinc-400 text-xs font-light">
                 <i className="bi bi-eye-fill" aria-hidden="true" />
+
+                {new Date(Number(doc?.id)).toISOString().split("T")[0]}
+
                 <span>
                   {doc?.id
                     ? parseInt(doc.id.slice(-4), 10).toLocaleString("en-US")
@@ -112,6 +126,7 @@ export default function Post({
                   views
                 </span>
               </div>
+
               <h1 className="line-clamp-2 text-xs text-zinc-200 font-semibold capitalize">
                 {doc?.xtitle}
               </h1>

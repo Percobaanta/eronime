@@ -1,7 +1,7 @@
 import { apiHentai } from "@/api/apiHentai";
 import Controller from "@/ui/Controller";
 
-export default async function Hentai() {
+export default async function HentaiPage() {
   const { getApiHentai } = await apiHentai();
 
   return (

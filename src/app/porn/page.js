@@ -1,7 +1,7 @@
 import { apiPorn } from "@/api/apiPorn";
 import Controller from "@/ui/Controller";
 
-export default async function Porn() {
+export default async function PornPage() {
   const { getApiPorn } = await apiPorn();
 
   return (

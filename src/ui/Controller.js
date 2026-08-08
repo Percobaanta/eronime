@@ -3,11 +3,11 @@
 import { useState } from "react";
 import Navbar from "@/ui/uiNavbar";
 import Filter from "@/ui/uiFilter";
+import Post from "@/ui/uiPost";
 import Search from "@/ui/uiSearch";
 import Bookmark from "@/ui/uiBookmark";
 import Gallery from "@/ui/uiGallery";
 import Stream from "@/ui/uiStream";
-import Post from "@/ui/uiPost";
 
 export default function Controller({ getApi, getInfo, path, view }) {
   const [getSearch, setSearch] = useState("");
@@ -17,7 +17,7 @@ export default function Controller({ getApi, getInfo, path, view }) {
 
   return (
     <>
-      {(path === "/" || path === "porn") && view === "post" && (
+      {path === "porn" && view === "post" && (
         <>
           <Navbar path={path} setSearch={setSearch} />
 
@@ -149,7 +149,7 @@ export default function Controller({ getApi, getInfo, path, view }) {
       {(path === "porn" || path === "animated" || path === "hentai") &&
         view === "stream" && (
           <>
-            <Navbar setSearch={setSearch} />
+            <Navbar path={path} setSearch={setSearch} />
 
             <Filter path={path} view={view} getApi={getApi} />
 
@@ -161,7 +161,7 @@ export default function Controller({ getApi, getInfo, path, view }) {
 
       {path === "cosplay" && view === "gallery" && (
         <>
-          <Navbar setSearch={setSearch} />
+          <Navbar path={path} setSearch={setSearch} />
 
           <Filter path={path} view={view} getApi={getApi} />
 
