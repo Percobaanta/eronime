@@ -43,7 +43,7 @@ export default function Stream({ getInfo, path }) {
       <div className="flex flex-col gap-4 mb-10">
         <div className="flex flex-col gap-1">
           <p className="text-white font-semibold capitalize">
-            {getInfo?.xtitle} - {getInfo?.file_code} - {getInfo?.linkid}
+            {getInfo?.xtitle}
           </p>
 
           <p className="text-base-400 text-xs">

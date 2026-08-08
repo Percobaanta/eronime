@@ -80,7 +80,7 @@ export default function Post({
           <Link
             key={doc.id}
             href={`/${path}/${doc.id}`}
-            className="w-full! h-min!"
+            className="w-full! h-min! active:scale-98"
           >
             <div
               key={doc.id}

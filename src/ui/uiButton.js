@@ -39,7 +39,7 @@ export default function Button({
 
   // Menggabungkan class menggunakan Array agar lebih bersih dari spasi ekstra
   const baseStyles = [
-    "flex items-center justify-center rounded-full capitalize cursor-pointer transition-colors duration-200",
+    "flex items-center justify-center rounded-full capitalize cursor-pointer transition-colors duration-200 active:scale-98",
     variants[variant],
     result,
 
