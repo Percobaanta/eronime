@@ -4,7 +4,6 @@ import { apiHentai } from "@/api/apiHentai";
 import { apiPorn } from "@/api/apiPorn";
 import { apiStreamtape } from "@/api/apiStreamtape";
 import Button from "@/ui/uiButton";
-import Navbar from "@/ui/uiNavbar";
 
 export default async function Admin() {
   const { getApiDoodstream } = await apiDoodstream();
@@ -31,8 +30,7 @@ export default async function Admin() {
 
   return (
     <main>
-      <Navbar />
-      <table className="text-xs mx-auto">
+      <table className="text-xs mx-auto my-10">
         <thead>
           <tr>
             <th className="border px-2 py-1">No</th>

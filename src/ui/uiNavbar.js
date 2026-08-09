@@ -55,12 +55,12 @@ export default function Navbar({
                 variant="baseActive"
                 icon="search"
                 rounded
-                className="justify-start! md:ml-24 min-w-48! max-w-96! w-full! px-5"
+                className="justify-start! md:ml-24 min-w-32! max-w-96! w-full! px-5"
               >
                 Search...
               </Button>
             ) : (
-              <div className="bg-zinc-800 flex gap-3 items-center rounded-full md:ml-24 min-w-48 max-w-80 w-full px-5">
+              <div className="bg-zinc-800 flex gap-3 items-center rounded-full md:ml-24 min-w-32 max-w-80 w-full px-5">
                 <i className="bi bi-search text-sm" aria-hidden="true" />
                 <input
                   type="search"
@@ -83,7 +83,7 @@ export default function Navbar({
             ></Button>
           </div>
 
-          {/* filter button */}
+          {/* page button */}
           <div className="flex flex-row gap-2">
             <div className="grid md:grid-cols-10 grid-cols-4 grow">
               {["porn", "animated", "hentai", "cosplay"].map((doc, i) => {
