@@ -19,10 +19,10 @@ export default function Controller({ getApi, getInfo, path, view }) {
     <>
       {path === "porn" && view === "post" && (
         <>
-          <Navbar path={path} setSearch={setSearch} />
-
-          <Filter
+          <Navbar
             path={path}
+            view={view}
+            setSearch={setSearch}
             getApi={getApi}
             getSort={getSort}
             setSort={setSort}
@@ -44,10 +44,9 @@ export default function Controller({ getApi, getInfo, path, view }) {
 
       {path === "animated" && view === "post" && (
         <>
-          <Navbar path={path} setSearch={setSearch} />
-
-          <Filter
+          <Navbar
             path={path}
+            setSearch={setSearch}
             getApi={getApi}
             getSort={getSort}
             setSort={setSort}
@@ -69,10 +68,9 @@ export default function Controller({ getApi, getInfo, path, view }) {
 
       {path === "hentai" && view === "post" && (
         <>
-          <Navbar path={path} setSearch={setSearch} />
-
-          <Filter
+          <Navbar
             path={path}
+            setSearch={setSearch}
             getApi={getApi}
             getSort={getSort}
             setSort={setSort}
@@ -99,10 +97,9 @@ export default function Controller({ getApi, getInfo, path, view }) {
 
       {path === "cosplay" && view === "post" && (
         <>
-          <Navbar path={path} setSearch={setSearch} />
-
-          <Filter
+          <Navbar
             path={path}
+            setSearch={setSearch}
             getApi={getApi}
             getSort={getSort}
             setSort={setSort}
@@ -124,7 +121,17 @@ export default function Controller({ getApi, getInfo, path, view }) {
 
       {path === "search" && view === "search" && (
         <>
-          <Navbar path={path} setSearch={setSearch} />
+          <Navbar
+            path={path}
+            setSearch={setSearch}
+            getApi={getApi}
+            getSort={getSort}
+            setSort={setSort}
+            getCreator={getCreator}
+            setCreator={setCreator}
+            getTag={getTag}
+            setTag={setTag}
+          />
 
           <Search
             getApi={getApi}
@@ -138,9 +145,9 @@ export default function Controller({ getApi, getInfo, path, view }) {
 
       {path === "bookmark" && view === "bookmark" && (
         <>
-          <Navbar path={path} setSearch={setSearch} />
+          <Navbar path={path} view={view} getApi={getApi} />
 
-          <Filter path={path} view={view} getApi={getApi} />
+          {/* <Filter path={path} view={view} getApi={getApi} /> */}
 
           <Bookmark getApi={getApi} />
         </>
@@ -149,9 +156,9 @@ export default function Controller({ getApi, getInfo, path, view }) {
       {(path === "porn" || path === "animated" || path === "hentai") &&
         view === "stream" && (
           <>
-            <Navbar path={path} setSearch={setSearch} />
+            <Navbar path={path} view={view} getApi={getApi} />
 
-            <Filter path={path} view={view} getApi={getApi} />
+            {/* <Filter path={path} view={view} getApi={getApi} /> */}
 
             <Stream getInfo={getInfo} />
 
@@ -161,9 +168,9 @@ export default function Controller({ getApi, getInfo, path, view }) {
 
       {path === "cosplay" && view === "gallery" && (
         <>
-          <Navbar path={path} setSearch={setSearch} />
+          <Navbar path={path} view={view} getApi={getApi} />
 
-          <Filter path={path} view={view} getApi={getApi} />
+          {/* <Filter path={path} view={view} getApi={getApi} /> */}
 
           <Gallery path={path} getInfo={getInfo} />
 

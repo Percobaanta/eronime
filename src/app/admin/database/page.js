@@ -89,6 +89,12 @@ export default async function Admin() {
                       value={pach?.id ?? "x"}
                     />
 
+                    <input
+                      className="bg-zinc-800 rounded-full px-2 py-1 text-center"
+                      readOnly
+                      value={pach?.xtitle ?? "x"}
+                    />
+
                     {pach && (
                       <>
                         <Button

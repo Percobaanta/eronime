@@ -2,7 +2,7 @@
 
 @layer components {
   :root {
-    @apply bg-zinc-900 text-zinc-400! text-base!;
+    @apply bg-zinc-950 text-zinc-400! text-base!;
   }
   ::-webkit-scrollbar {
     width: 5px;

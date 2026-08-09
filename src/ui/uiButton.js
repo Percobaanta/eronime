@@ -5,6 +5,7 @@ export default function Button({
   href,
   variant = "default",
   size = "md",
+  rounded,
   icon,
   iconEnd,
   className = "",
@@ -14,11 +15,11 @@ export default function Button({
 
   const variants = {
     default: "text-zinc-400 hover:text-zinc-300",
-    ghost: "hover:bg-zinc-700 hover:text-zinc-300",
-    base: "bg-zinc-800 text-zinc-400 hover:bg-zinc-700",
-    baseActive: "bg-zinc-700 text-zinc-400",
-    primary: "bg-yellow-200 text-zinc-800 hover:bg-yellow-300",
-    primaryActive: "bg-yellow-300 text-zinc-800",
+    ghost: "hover:bg-zinc-800 hover:text-zinc-300",
+    base: "bg-zinc-900 text-zinc-400 hover:bg-zinc-800",
+    baseActive: "bg-zinc-800 text-zinc-400",
+    primary: "bg-yellow-200 text-zinc-900 hover:bg-yellow-300",
+    primaryActive: "bg-yellow-300 text-zinc-900",
   };
 
   const buttonSizes = {
@@ -39,10 +40,11 @@ export default function Button({
 
   // Menggabungkan class menggunakan Array agar lebih bersih dari spasi ekstra
   const baseStyles = [
-    "flex items-center justify-center rounded-full capitalize cursor-pointer transition-colors duration-200 active:scale-98",
+    `${
+      rounded ? "rounded-full" : "rounded-md"
+    } flex items-center justify-center capitalize cursor-pointer transition-colors duration-200 active:scale-98`,
     variants[variant],
     result,
-
     className,
   ]
     .filter(Boolean)
