@@ -7,6 +7,7 @@ export default function Navbar({
   path,
   view,
   getApi,
+  setSearch,
   getSort,
   setSort,
   getCreator,
@@ -35,10 +36,10 @@ export default function Navbar({
       {/* -------------------- */}
       {/* Navbar & Filter */}
       {/* -------------------- */}
-      <div className="bg-zinc-900 mb-2">
-        <div className="container md:w-11/12 w-full mx-auto p-2 space-y-4">
-          {/* navbar */}
-          <div className="flex md:justify-start justify-between gap-4">
+      <div className="bg-zinc-900">
+        <div className="container md:w-11/12 w-full mx-auto px-4 py-2">
+          {/* --- navbar --- */}
+          <div className="flex md:justify-start justify-between gap-4 mb-4">
             <Button
               href="/"
               size="lg"
@@ -83,9 +84,9 @@ export default function Navbar({
             ></Button>
           </div>
 
-          {/* page button */}
+          {/* --- page button --- */}
           <div className="flex flex-row gap-2">
-            <div className="grid md:grid-cols-12 grid-cols-4 grow">
+            <div className="grid md:grid-cols-12 grid-cols-4 grow gap-2">
               {["porn", "animated", "hentai", "cosplay"].map((doc, i) => {
                 const isActive = path === doc;
                 return (
@@ -124,7 +125,7 @@ export default function Navbar({
       {/* Menu Filter */}
       {/* -------------------- */}
       {getFilter ? (
-        <div className={`container md:w-11/12 w-full mx-auto p-2 mb-4`}>
+        <div className="container md:w-11/12 w-full mx-auto p-4 pb-0">
           <div className="bg-zinc-900 overflow-hidden rounded-lg">
             <div className="flex flex-col md:max-h-64 max-h-48 overflow-y-scroll">
               {/* --- sort section --- */}
@@ -219,7 +220,7 @@ export default function Navbar({
         view !== "gallery" &&
         view !== "search" &&
         view !== "bookmark" && (
-          <div className="container md:w-11/12 w-full mx-auto p-2 mb-4">
+          <div className="container md:w-11/12 w-full mx-auto p-4 pb-0">
             <p className="text-zinc-200 font-bold">
               <i className="bi bi-compass-fill mr-2"></i> Discover
             </p>

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Navbar from "@/ui/uiNavbar";
-import Filter from "@/ui/uiFilter";
 import Post from "@/ui/uiPost";
 import Search from "@/ui/uiSearch";
 import Bookmark from "@/ui/uiBookmark";
@@ -87,11 +86,6 @@ export default function Controller({ getApi, getInfo, path, view }) {
             getCreator={getCreator}
             getTag={getTag}
           />
-
-          {/* <div className="flex flex-col items-center justify-center w-full my-24">
-              <i className="bi bi-gear-wide-connected text-4xl mb-3" />
-              <p className="text-xlgl font-semibold">Maintenance</p>
-            </div> */}
         </>
       )}
 
@@ -148,8 +142,6 @@ export default function Controller({ getApi, getInfo, path, view }) {
         <>
           <Navbar path={path} view={view} getApi={getApi} />
 
-          {/* <Filter path={path} view={view} getApi={getApi} /> */}
-
           <Bookmark getApi={getApi} />
         </>
       )}
@@ -158,8 +150,6 @@ export default function Controller({ getApi, getInfo, path, view }) {
         view === "stream" && (
           <>
             <Navbar path={path} view={view} getApi={getApi} />
-
-            {/* <Filter path={path} view={view} getApi={getApi} /> */}
 
             <Stream getInfo={getInfo} />
 
@@ -170,8 +160,6 @@ export default function Controller({ getApi, getInfo, path, view }) {
       {path === "cosplay" && view === "gallery" && (
         <>
           <Navbar path={path} view={view} getApi={getApi} />
-
-          {/* <Filter path={path} view={view} getApi={getApi} /> */}
 
           <Gallery path={path} getInfo={getInfo} />
 

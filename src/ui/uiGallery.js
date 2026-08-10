@@ -52,7 +52,7 @@ export default function Gallery({ getInfo, path }) {
       {/* -------------------- */}
       {/* Gallery Image */}
       {/* -------------------- */}
-      <div className="container md:w-11/12 w-full mx-auto p-2">
+      <div className="container md:w-11/12 w-full mx-auto p-4 pb-0">
         <div className="grid md:grid-cols-8 grid-cols-4 gap-2">
           {Array.from({ length: 8 }, (_, i) => (
             <Button
@@ -78,31 +78,31 @@ export default function Gallery({ getInfo, path }) {
       {/* -------------------- */}
       {/* Detail Image */}
       {/* -------------------- */}
-      <div className="container md:w-11/12 w-full mx-auto p-2 mb-5">
+      <div className="container md:w-11/12 w-full mx-auto p-4">
         <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-1">
-            <p className="text-white font-semibold capitalize">
+          <div className="flex flex-col gap-2">
+            <p className="text-zinc-200 font-semibold capitalize">
               {getInfo?.xtitle}
             </p>
 
-            <p className="text-base-400 text-xs">
+            <span className="text-base-400 text-xs">
               <i className="bi bi-eye-fill mr-2" />
               {getInfo?.id
                 ? parseInt(getInfo.id.slice(-4), 10).toLocaleString("en-US")
                 : 0}
-            </p>
+            </span>
           </div>
 
           <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded-lg">
-            {/* creator */}
+            {/* --- creator/brand/pornstar --- */}
             <div className="flex items-top">
               <Button
                 size="sm"
                 variant="baseActive"
                 icon="person-vcard-fill"
-                className="flex-none cursor-default! rounded-lg!"
+                className="flex-none! cursor-default! rounded-lg!"
               />
-              <div className="flex flex-wrap flex gap-1">
+              <div className="flex flex-wrap">
                 {getInfo?.xcreator?.map((doc, i) => (
                   <Button key={i} size="sm" className="cursor-default!">
                     {doc}
@@ -111,15 +111,15 @@ export default function Gallery({ getInfo, path }) {
               </div>
             </div>
 
-            {/* tags */}
+            {/* --- tags --- */}
             <div className="flex items-top">
               <Button
                 size="sm"
                 variant="baseActive"
                 icon="tag-fill"
-                className="flex-none cursor-default! rounded-lg!"
+                className="flex-none! cursor-default! rounded-lg!"
               />
-              <div className="flex flex-wrap gap-1">
+              <div className="flex flex-wrap">
                 {getInfo?.xtags?.map((doc, i) => (
                   <Button key={i} size="sm" className="cursor-default!">
                     {doc}
@@ -128,13 +128,13 @@ export default function Gallery({ getInfo, path }) {
               </div>
             </div>
 
-            {/* images count */}
+            {/* --- images count --- */}
             <div className="flex items-top">
               <Button
                 size="sm"
                 variant="baseActive"
                 icon="images"
-                className="flex-none cursor-default! rounded-lg!"
+                className="flex-none! cursor-default! rounded-lg!"
               />
               <div className="flex flex-wrap">
                 <Button size="sm" className="cursor-default!">
@@ -143,7 +143,7 @@ export default function Gallery({ getInfo, path }) {
               </div>
             </div>
 
-            {/* uploaded */}
+            {/* --- uploaded --- */}
             <div className="flex items-top">
               <Button
                 size="sm"

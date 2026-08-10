@@ -14,31 +14,30 @@ export default function Button({
   const hasText = !!children;
 
   const variants = {
-    default: "text-zinc-400 hover:text-zinc-300",
-    ghost: "hover:bg-zinc-800 hover:text-zinc-300",
+    default: "text-zinc-400 hover:text-zinc-200",
+    ghost: "hover:bg-zinc-800 hover:text-zinc-200",
     base: "bg-zinc-900 text-zinc-400 hover:bg-zinc-800",
     baseActive: "bg-zinc-800 text-zinc-400",
-    primary: "bg-yellow-200 text-zinc-900 hover:bg-yellow-300",
-    primaryActive: "bg-yellow-300 text-zinc-900",
+    primary: "bg-yellow-200 text-zinc-900 hover:bg-yellow-200",
+    primaryActive: "bg-yellow-200 text-zinc-900",
   };
 
   const buttonSizes = {
     sm: "h-6.5 text-xs gap-2",
-    md: "h-8 text-xs gap-2 font-semibold",
-    lg: "h-10 text-sm gap-2 font-semibold",
+    md: "h-7 text-xs gap-2 font-semibold",
+    lg: "h-8.75 text-sm gap-2 font-semibold",
   };
 
   const iconSizes = {
     sm: "w-6.5 h-6.5 px-0",
-    md: "w-8 h-8 px-0",
-    lg: "w-10 h-10 px-0",
+    md: "w-7 h-7 px-0",
+    lg: "w-8.75 h-8.75 px-0",
   };
 
   const result = hasText
-    ? `px-3 md:w-fit ${buttonSizes[size]}`
+    ? `px-2 md:w-fit ${buttonSizes[size]}`
     : iconSizes[size];
 
-  // Menggabungkan class menggunakan Array agar lebih bersih dari spasi ekstra
   const baseStyles = [
     `${
       rounded ? "rounded-full" : "rounded-md"

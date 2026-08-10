@@ -46,13 +46,13 @@ export default function Post({ path, getApi, getSort, getCreator, getTag }) {
 
   return (
     <>
-      <div className="container md:w-11/12 w-full mx-auto p-2 mb-4">
+      <div className="container md:w-11/12 w-full mx-auto p-4">
         <div
           className={`${
             path === "hentai" || path === "cosplay"
               ? "grid-cols-3 md:grid-cols-6"
               : "grid-cols-2 md:grid-cols-4"
-          } grid gap-x-2 gap-y-4 mb-10`}
+          } grid gap-x-2 gap-y-4 mb-6`}
         >
           {result.slice(0, loadCount).map((doc, i) => (
             <Link
@@ -102,7 +102,7 @@ export default function Post({ path, getApi, getSort, getCreator, getTag }) {
         </div>
 
         {loadCount < result.length && (
-          <div className="flex justify-center mb-10">
+          <div className="flex justify-center">
             <Button onClick={() => setLoadCount((prev) => prev + 12)}>
               Load More
             </Button>

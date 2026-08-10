@@ -18,7 +18,7 @@ export default function Stream({ getInfo, path }) {
       {/* -------------------- */}
       {/* Embed video */}
       {/* -------------------- */}
-      <div className="bg-black flex justify-center rounded-lg! shadow drop-shadow p-3 mb-5">
+      <div className="bg-black flex justify-center rounded-lg! shadow drop-shadow md:p-4">
         {getInfo?.file_code ? (
           <iframe
             className="md:w-7/12 w-full aspect-video"
@@ -46,29 +46,30 @@ export default function Stream({ getInfo, path }) {
       {/* -------------------- */}
       {/* Detail Video */}
       {/* -------------------- */}
-      <div className="container md:w-11/12 w-full mx-auto p-2 space-y-4">
-        <div className="flex flex-col gap-4 mb-10">
-          <div className="flex flex-col gap-1">
-            <p className="text-white font-semibold capitalize">
+      <div className="container md:w-11/12 w-full mx-auto p-4">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
+            <p className="text-zinc-200 font-semibold capitalize">
               {getInfo?.xtitle}
             </p>
 
-            <p className="text-base-400 text-xs">
+            <span className="text-base-400 text-xs">
               <i className="bi bi-eye-fill mr-2" />
+
               {getInfo?.id
                 ? parseInt(getInfo.id.slice(-4), 10).toLocaleString("en-US")
                 : 0}
-            </p>
+            </span>
           </div>
 
-          <div className="bg-zinc-800 flex flex-col gap-4 p-4 rounded-lg!">
+          <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded-lg!">
             {/* --- creator/brand/pornstar --- */}
             <div className="flex items-top">
               <Button
                 size="sm"
                 variant="baseActive"
                 icon="person-vcard-fill"
-                className="flex-none cursor-default! rounded-lg!"
+                className="flex-none! cursor-default! rounded-lg!"
               ></Button>
 
               <div className="flex flex-wrap">
@@ -86,7 +87,7 @@ export default function Stream({ getInfo, path }) {
                 size="sm"
                 variant="baseActive"
                 icon="tag-fill"
-                className="flex-none cursor-default! rounded-lg!"
+                className="flex-none! cursor-default! rounded-lg!"
               ></Button>
 
               <div className="flex flex-wrap">
@@ -104,7 +105,7 @@ export default function Stream({ getInfo, path }) {
                 size="sm"
                 variant="baseActive"
                 icon={"clock-fill"}
-                className="flex-none cursor-default! rounded-lg!"
+                className="flex-none! cursor-default! rounded-lg!"
               ></Button>
 
               <div className="flex flex-wrap">
@@ -119,7 +120,7 @@ export default function Stream({ getInfo, path }) {
             </div>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex gap-2">
             <Button
               variant={bookmarks.includes(getInfo.id) ? "primary" : "base"}
               icon="bookmark-fill"
