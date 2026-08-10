@@ -23,13 +23,15 @@ export default function Bookmark({ getApi }) {
   return (
     <>
       <div className="container md:w-11/12 w-full mx-auto p-2">
-        <p className="text-zinc-200 font-bold">
-          <i className="bi bi-compass-fill mr-2"></i> Bookmark
-        </p>
+        <div className="mb-4">
+          <p className="text-zinc-200 font-bold">
+            <i className="bi bi-compass-fill mr-2"></i> Bookmark
+          </p>
 
-        <span className="text-zinc-400 text-xs">
-          Manage your collection add or remove bookmark
-        </span>
+          <span className="text-zinc-400 text-xs">
+            Manage your collection add or remove bookmark
+          </span>
+        </div>
 
         <div className="grid grid-cols-2 md:grid-cols-6 gap-x-3 gap-y-5 mb-10">
           {bookmarkedData.map((doc) => (

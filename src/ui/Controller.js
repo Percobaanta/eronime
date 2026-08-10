@@ -123,6 +123,7 @@ export default function Controller({ getApi, getInfo, path, view }) {
         <>
           <Navbar
             path={path}
+            view={view}
             setSearch={setSearch}
             getApi={getApi}
             getSort={getSort}

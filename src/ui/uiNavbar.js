@@ -85,16 +85,16 @@ export default function Navbar({
 
           {/* page button */}
           <div className="flex flex-row gap-2">
-            <div className="grid md:grid-cols-10 grid-cols-4 grow">
+            <div className="grid md:grid-cols-12 grid-cols-4 grow">
               {["porn", "animated", "hentai", "cosplay"].map((doc, i) => {
                 const isActive = path === doc;
                 return (
                   <Button
                     key={i}
                     href={`/${doc}`}
-                    icon={doc !== "cosplay" ? "collection-play-fill" : "images"}
                     variant={isActive ? "primary" : "default"}
                     className="lg:col-span-1 md:col-span-2 col-span-1 w-full!"
+                    rounded
                   >
                     {doc}
                   </Button>
@@ -106,8 +106,12 @@ export default function Navbar({
               icon="filter"
               variant={getFilter ? "primary" : "default"}
               onClick={() => setFilter((prev) => !prev)}
+              rounded
               className={
-                view === "stream" || view === "gallery" || view === "bookmark"
+                view === "stream" ||
+                view === "gallery" ||
+                view === "bookmark" ||
+                view === "search"
                   ? "hidden"
                   : "flex-none!"
               }
@@ -213,6 +217,7 @@ export default function Navbar({
       ) : (
         view !== "stream" &&
         view !== "gallery" &&
+        view !== "search" &&
         view !== "bookmark" && (
           <div className="container md:w-11/12 w-full mx-auto p-2 mb-4">
             <p className="text-zinc-200 font-bold">
