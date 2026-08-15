@@ -40,7 +40,7 @@ export default function Button({
 
   const baseStyles = [
     `${
-      rounded ? "rounded-full" : "rounded-md"
+      rounded ? "rounded-full" : "rounded"
     } flex items-center justify-center capitalize cursor-pointer transition-colors duration-200 active:scale-98`,
     variants[variant],
     result,

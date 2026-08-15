@@ -37,7 +37,7 @@ export default function Navbar({
       {/* Navbar & Filter */}
       {/* -------------------- */}
       <div className="bg-zinc-900">
-        <div className="container md:w-11/12 w-full mx-auto px-4 py-2">
+        <div className="container md:w-11/12 w-full mx-auto p-2!">
           {/* --- navbar --- */}
           <div className="flex md:justify-start justify-between gap-4 mb-4">
             <Button
@@ -125,7 +125,7 @@ export default function Navbar({
       {/* Menu Filter */}
       {/* -------------------- */}
       {getFilter ? (
-        <div className="container md:w-11/12 w-full mx-auto p-4 pb-0">
+        <div className="container md:w-11/12 w-full mx-auto p-2">
           <div className="bg-zinc-900 overflow-hidden rounded-lg">
             <div className="flex flex-col md:max-h-64 max-h-48 overflow-y-scroll">
               {/* --- sort section --- */}
@@ -188,6 +188,7 @@ export default function Navbar({
                     </Button>
                   ))}
               </div>
+
               {/* --- tags section --- */}
               <div className="grid md:grid-cols-6 grid-cols-1 gap-1 w-full p-3">
                 <div className="md:col-span-6">
@@ -220,7 +221,7 @@ export default function Navbar({
         view !== "gallery" &&
         view !== "search" &&
         view !== "bookmark" && (
-          <div className="container md:w-11/12 w-full mx-auto p-4 pb-0">
+          <div className="container md:w-11/12 w-full mx-auto p-2">
             <p className="text-zinc-200 font-bold">
               <i className="bi bi-compass-fill mr-2"></i> Discover
             </p>
@@ -237,7 +238,7 @@ export default function Navbar({
                   <Button
                     key={doc}
                     size="sm"
-                    variant={getCreator === doc ? "baseActive" : "base"}
+                    variant={getTag === doc ? "baseActive" : "base"}
                     className="flex-none rounded!"
                     onClick={() => setTag(getTag === doc ? "" : doc)}
                   >

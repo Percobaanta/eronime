@@ -52,12 +52,12 @@ export default function Gallery({ getInfo, path }) {
       {/* -------------------- */}
       {/* Gallery Image */}
       {/* -------------------- */}
-      <div className="container md:w-11/12 w-full mx-auto p-4 pb-0">
+      <div className="container md:w-11/12 w-full mx-auto p-2">
         <div className="grid md:grid-cols-8 grid-cols-4 gap-2">
           {Array.from({ length: 8 }, (_, i) => (
             <Button
               key={i}
-              className="w-full! h-min! p-0! rounded! overflow-hidden"
+              className="w-full! h-min! p-0! overflow-hidden"
               onClick={() => setCurrentIndex(i + 1)}
             >
               <Image
@@ -68,7 +68,7 @@ export default function Gallery({ getInfo, path }) {
                 quality={75}
                 width={512}
                 height={512}
-                className="w-full aspect-square object-cover rounded-md!"
+                className="w-full aspect-square object-cover rounded!"
               />
             </Button>
           ))}
@@ -78,7 +78,7 @@ export default function Gallery({ getInfo, path }) {
       {/* -------------------- */}
       {/* Detail Image */}
       {/* -------------------- */}
-      <div className="container md:w-11/12 w-full mx-auto p-4">
+      <div className="container md:w-11/12 w-full mx-auto p-2">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <p className="text-zinc-200 font-semibold capitalize">
@@ -93,14 +93,14 @@ export default function Gallery({ getInfo, path }) {
             </span>
           </div>
 
-          <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded-lg">
+          <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded">
             {/* --- creator/brand/pornstar --- */}
             <div className="flex items-top">
               <Button
                 size="sm"
                 variant="baseActive"
                 icon="person-vcard-fill"
-                className="flex-none! cursor-default! rounded-lg!"
+                className="flex-none! cursor-default!"
               />
               <div className="flex flex-wrap">
                 {getInfo?.xcreator?.map((doc, i) => (
@@ -117,7 +117,7 @@ export default function Gallery({ getInfo, path }) {
                 size="sm"
                 variant="baseActive"
                 icon="tag-fill"
-                className="flex-none! cursor-default! rounded-lg!"
+                className="flex-none! cursor-default!"
               />
               <div className="flex flex-wrap">
                 {getInfo?.xtags?.map((doc, i) => (
@@ -134,7 +134,7 @@ export default function Gallery({ getInfo, path }) {
                 size="sm"
                 variant="baseActive"
                 icon="images"
-                className="flex-none! cursor-default! rounded-lg!"
+                className="flex-none! cursor-default!"
               />
               <div className="flex flex-wrap">
                 <Button size="sm" className="cursor-default!">
@@ -149,7 +149,7 @@ export default function Gallery({ getInfo, path }) {
                 size="sm"
                 variant="baseActive"
                 icon="clock-fill"
-                className="flex-none cursor-default! rounded-lg!"
+                className="flex-none cursor-default!"
               />
               <div className="flex flex-wrap">
                 <Button size="sm" className="cursor-default!">
@@ -235,7 +235,7 @@ export default function Gallery({ getInfo, path }) {
               <img
                 src={`/img/${getInfo?.id}/(${currentIndex}).webp`}
                 alt={getInfo?.xtitle || "eronime"}
-                className="rounded-lg! max-w-full max-h-full mx-auto object-contain"
+                className="rounded! max-w-full max-h-full mx-auto object-contain"
               />
             </div>
 

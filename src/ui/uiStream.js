@@ -18,7 +18,7 @@ export default function Stream({ getInfo, path }) {
       {/* -------------------- */}
       {/* Embed video */}
       {/* -------------------- */}
-      <div className="bg-black flex justify-center rounded-lg! shadow drop-shadow md:p-4">
+      <div className="bg-black flex justify-center rounded! shadow drop-shadow md:p-2">
         {getInfo?.file_code ? (
           <iframe
             className="md:w-7/12 w-full aspect-video"
@@ -46,7 +46,7 @@ export default function Stream({ getInfo, path }) {
       {/* -------------------- */}
       {/* Detail Video */}
       {/* -------------------- */}
-      <div className="container md:w-11/12 w-full mx-auto p-4">
+      <div className="container md:w-11/12 w-full mx-auto p-2">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <p className="text-zinc-200 font-semibold capitalize">
@@ -62,14 +62,14 @@ export default function Stream({ getInfo, path }) {
             </span>
           </div>
 
-          <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded-lg!">
+          <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded!">
             {/* --- creator/brand/pornstar --- */}
             <div className="flex items-top">
               <Button
                 size="sm"
                 variant="baseActive"
                 icon="person-vcard-fill"
-                className="flex-none! cursor-default! rounded-lg!"
+                className="flex-none! cursor-default!"
               ></Button>
 
               <div className="flex flex-wrap">
@@ -87,7 +87,7 @@ export default function Stream({ getInfo, path }) {
                 size="sm"
                 variant="baseActive"
                 icon="tag-fill"
-                className="flex-none! cursor-default! rounded-lg!"
+                className="flex-none! cursor-default!"
               ></Button>
 
               <div className="flex flex-wrap">
@@ -105,7 +105,7 @@ export default function Stream({ getInfo, path }) {
                 size="sm"
                 variant="baseActive"
                 icon={"clock-fill"}
-                className="flex-none! cursor-default! rounded-lg!"
+                className="flex-none! cursor-default!"
               ></Button>
 
               <div className="flex flex-wrap">

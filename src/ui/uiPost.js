@@ -46,7 +46,7 @@ export default function Post({ path, getApi, getSort, getCreator, getTag }) {
 
   return (
     <>
-      <div className="container md:w-11/12 w-full mx-auto p-4">
+      <div className="container md:w-11/12 w-full mx-auto p-2">
         <div
           className={`${
             path === "hentai" || path === "cosplay"
@@ -77,7 +77,7 @@ export default function Post({ path, getApi, getSort, getCreator, getTag }) {
                     path === "hentai" || path === "cosplay"
                       ? "aspect-2/2.75"
                       : "aspect-5/3"
-                  }  w-full object-cover rounded-lg`}
+                  }  w-full object-cover rounded`}
                 />
               </div>
 
@@ -102,7 +102,7 @@ export default function Post({ path, getApi, getSort, getCreator, getTag }) {
         </div>
 
         {loadCount < result.length && (
-          <div className="flex justify-center">
+          <div className="flex justify-center my-10">
             <Button onClick={() => setLoadCount((prev) => prev + 12)}>
               Load More
             </Button>

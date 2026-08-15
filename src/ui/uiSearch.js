@@ -11,7 +11,7 @@ export default function Search({ getApi, getSearch = "" }) {
   );
 
   return (
-    <div className="container md:w-11/12 w-full mx-auto p-4">
+    <div className="container md:w-11/12 w-full mx-auto p-2">
       <div className="flex flex-col w-full">
         {searchData.slice(0, visibleCount).map((doc) => (
           <Button

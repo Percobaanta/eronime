@@ -17,7 +17,7 @@ export default function Bookmark({ getApi }) {
 
   return (
     <>
-      <div className="container md:w-11/12 w-full mx-auto p-4 pb-0">
+      <div className="container md:w-11/12 w-full mx-auto p-2">
         <p className="text-zinc-200 font-bold">
           <i className="bi bi-bookmark-fill mr-2"></i> Bookmark
         </p>
@@ -27,7 +27,7 @@ export default function Bookmark({ getApi }) {
         </span>
       </div>
 
-      <div className="container md:w-11/12 w-full mx-auto p-4">
+      <div className="container md:w-11/12 w-full mx-auto p-2">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-x-3 gap-y-5 mb-10">
           {bookmarkedData.map((doc) => (
             <div key={doc.id} className="flex flex-col gap-3">
@@ -47,7 +47,7 @@ export default function Bookmark({ getApi }) {
                   quality={75}
                   width={512}
                   height={512}
-                  className={`aspect-square w-full object-cover rounded-lg`}
+                  className={`aspect-square w-full object-cover rounded`}
                 />
               </Link>
 
