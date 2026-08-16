@@ -11,7 +11,12 @@ export default function Stream({ getInfo, path }) {
     setBookmarks(stored);
   }, []);
 
-  const fakeUrls = ["link1", "link2", "link3", "link4"];
+  const fakeUrls = [
+    "https://ouo.io/EbN4Wi",
+    "https://ouo.io/UF6icS",
+    "https://ouo.io/Mzuj1MXy",
+    "https://ouo.io/LZVNs30",
+  ];
 
   return (
     <>
