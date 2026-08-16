@@ -183,12 +183,15 @@ export default function Gallery({ getInfo, path }) {
             />
 
             <Button
-              href={`/d/link1`}
+              href="#"
               variant="primary"
               icon="cloud-arrow-down-fill text-lg"
               className="w-fit"
               onClick={(e) => {
-                const value = getInfo?.download_url || "";
+                e.preventDefault();
+
+                const value = getInfo?.download_url || getInfo?.link || "";
+
                 const encoded = btoa(unescape(encodeURIComponent(value)));
 
                 sessionStorage.setItem("d", encoded);
@@ -196,7 +199,7 @@ export default function Gallery({ getInfo, path }) {
                 const fakeUrl =
                   fakeUrls[Math.floor(Math.random() * fakeUrls.length)];
 
-                e.currentTarget.href = `/d/${fakeUrl}`;
+                window.location.href = fakeUrl;
               }}
             >
               Download (HD)
@@ -217,15 +220,26 @@ export default function Gallery({ getInfo, path }) {
               </p>
 
               <Button
-                href={`/d/${getInfo?.id}`}
+                href="#"
                 variant="primary"
-                icon="cloud-arrow-down-fill"
-                className="ml-auto"
-                onClick={() => {
-                  sessionStorage.setItem("d", getInfo.xdownload);
+                icon="cloud-arrow-down-fill text-lg"
+                className="w-fit"
+                onClick={(e) => {
+                  e.preventDefault();
+
+                  const value = getInfo?.download_url || getInfo?.link || "";
+
+                  const encoded = btoa(unescape(encodeURIComponent(value)));
+
+                  sessionStorage.setItem("d", encoded);
+
+                  const fakeUrl =
+                    fakeUrls[Math.floor(Math.random() * fakeUrls.length)];
+
+                  window.location.href = fakeUrl;
                 }}
               >
-                Download
+                Download (HD)
               </Button>
 
               <Button

@@ -31,6 +31,9 @@ export default function Navbar({
     return acc;
   }, {});
 
+  const uniqueTags = [...new Set(getApi?.flatMap((item) => item.xtags || []))];
+
+  console.log(uniqueTags);
   return (
     <>
       {/* -------------------- */}
@@ -138,12 +141,12 @@ export default function Navbar({
                 </div>
 
                 {[
+                  { id: "date", label: "date", icon: "arrow-down" },
+                  { id: "date_down", label: "date", icon: "arrow-up" },
                   { id: "title", label: "title", icon: "arrow-down" },
                   { id: "title_down", label: "title", icon: "arrow-up" },
                   { id: "view", label: "view", icon: "arrow-down" },
                   { id: "view_down", label: "view", icon: "arrow-up" },
-                  { id: "date", label: "date", icon: "arrow-down" },
-                  { id: "date_down", label: "date", icon: "arrow-up" },
                 ].map((sortItem) => (
                   <Button
                     key={sortItem.id}
