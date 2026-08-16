@@ -46,10 +46,10 @@ export default function Gallery({ getInfo, path }) {
   }, []);
 
   const fakeUrls = [
-    "https://ouo.io/EbN4Wi",
-    "https://ouo.io/UF6icS",
-    "https://ouo.io/Mzuj1MXy",
-    "https://ouo.io/LZVNs30",
+    "https://ouo.io/4NFemA",
+    "https://ouo.io/2HwnWR",
+    "https://ouo.io/51eI8s",
+    "https://ouo.io/c5hBUY",
   ];
 
   return (

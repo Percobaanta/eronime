@@ -12,10 +12,10 @@ export default function Stream({ getInfo, path }) {
   }, []);
 
   const fakeUrls = [
-    "https://ouo.io/EbN4Wi",
-    "https://ouo.io/UF6icS",
-    "https://ouo.io/Mzuj1MXy",
-    "https://ouo.io/LZVNs30",
+    "https://ouo.io/4NFemA",
+    "https://ouo.io/2HwnWR",
+    "https://ouo.io/51eI8s",
+    "https://ouo.io/c5hBUY",
   ];
 
   return (
@@ -140,12 +140,15 @@ export default function Stream({ getInfo, path }) {
             />
 
             <Button
-              href={`/d/link1`}
+              href="#"
               variant="primary"
               icon="cloud-arrow-down-fill text-lg"
               className="w-fit"
               onClick={(e) => {
+                e.preventDefault();
+
                 const value = getInfo?.download_url || getInfo?.link || "";
+
                 const encoded = btoa(unescape(encodeURIComponent(value)));
 
                 sessionStorage.setItem("d", encoded);
@@ -153,7 +156,7 @@ export default function Stream({ getInfo, path }) {
                 const fakeUrl =
                   fakeUrls[Math.floor(Math.random() * fakeUrls.length)];
 
-                e.currentTarget.href = `/d/${fakeUrl}`;
+                window.location.href = fakeUrl;
               }}
             >
               Download (HD)
