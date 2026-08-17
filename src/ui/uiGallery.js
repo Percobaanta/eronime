@@ -98,7 +98,7 @@ export default function Gallery({ getInfo, path }) {
             </span>
           </div>
 
-          <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded">
+          <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded-lg">
             {/* --- creator/brand/pornstar --- */}
             <div className="flex items-top">
               <Button
@@ -190,7 +190,7 @@ export default function Gallery({ getInfo, path }) {
               onClick={(e) => {
                 e.preventDefault();
 
-                const value = getInfo?.download_url || getInfo?.link || "";
+                const value = getInfo?.xdownload;
 
                 const encoded = btoa(unescape(encodeURIComponent(value)));
 
@@ -227,7 +227,7 @@ export default function Gallery({ getInfo, path }) {
                 onClick={(e) => {
                   e.preventDefault();
 
-                  const value = getInfo?.download_url || getInfo?.link || "";
+                  const value = getInfo?.xdownload;
 
                   const encoded = btoa(unescape(encodeURIComponent(value)));
 

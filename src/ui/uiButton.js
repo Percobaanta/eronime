@@ -35,12 +35,12 @@ export default function Button({
   };
 
   const result = hasText
-    ? `px-2 md:w-fit ${buttonSizes[size]}`
+    ? `px-4 md:w-fit ${buttonSizes[size]}`
     : iconSizes[size];
 
   const baseStyles = [
     `${
-      rounded ? "rounded-full" : "rounded"
+      rounded ? "rounded-full" : "rounded-lg"
     } flex items-center justify-center capitalize cursor-pointer transition-colors duration-200 active:scale-98`,
     variants[variant],
     result,

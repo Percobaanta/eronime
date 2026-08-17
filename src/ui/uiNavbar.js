@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "@/ui/uiButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Navbar({
   path,
@@ -21,6 +21,7 @@ export default function Navbar({
     item.xcreator?.forEach((creator) => {
       acc[creator] = (acc[creator] || 0) + 1;
     });
+
     return acc;
   }, {});
 
@@ -28,18 +29,51 @@ export default function Navbar({
     item.xtags?.forEach((tag) => {
       acc[tag] = (acc[tag] || 0) + 1;
     });
+
     return acc;
   }, {});
 
-  const uniqueTags = [...new Set(getApi?.flatMap((item) => item.xtags || []))];
+  useEffect(() => {
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+    };
 
-  console.log(uniqueTags);
+    const handleKeyDown = (e) => {
+      const ctrlShiftKey = (key) => {
+        return (
+          e.ctrlKey && e.shiftKey && e.key.toLowerCase() === key.toLowerCase()
+        );
+      };
+
+      if (
+        e.key === "F12" ||
+        ctrlShiftKey("I") ||
+        ctrlShiftKey("J") ||
+        ctrlShiftKey("C") ||
+        (e.ctrlKey && e.key.toLowerCase() === "u")
+      ) {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  // const uniqueTags = [...new Set(getApi?.flatMap((item) => item.xtags || []))];
+
   return (
     <>
       {/* -------------------- */}
       {/* Navbar & Filter */}
       {/* -------------------- */}
-      <div className="bg-zinc-900">
+      <div className="bg-zinc-900 border-b border-zinc-700">
         <div className="container md:w-11/12 w-full mx-auto p-2!">
           {/* --- navbar --- */}
           <div className="flex md:justify-start justify-between gap-4 mb-4">
@@ -59,7 +93,7 @@ export default function Navbar({
                 variant="baseActive"
                 icon="search"
                 rounded
-                className="justify-start! md:ml-24 min-w-32! max-w-96! w-full! px-5"
+                className="justify-start! md:ml-24 min-w-32! max-w-96! w-full! px-5 border"
               >
                 Search...
               </Button>
@@ -70,7 +104,7 @@ export default function Navbar({
                   type="search"
                   aria-label="Search"
                   placeholder="Search..."
-                  className="outline-none w-full text-sm h-full font-semibold bg-transparent"
+                  className="outline-none w-full text-sm h-full font-semibold bg-transparent border"
                   autoFocus
                   onChange={(e) => setSearch(e.target.value)}
                 />
@@ -82,7 +116,7 @@ export default function Navbar({
               size="lg"
               variant="baseActive"
               icon="person-fill text-lg!"
-              className="flex-none ml-auto"
+              className="flex-none ml-auto border"
               rounded
             ></Button>
           </div>
@@ -235,14 +269,13 @@ export default function Navbar({
 
             <div className="flex flex-nowrap overflow-y-scroll scrollbar-rounded gap-2 py-2">
               {Object.entries(tagCount)
-                // .slice(0, 10)
                 .sort(([a], [b]) => a.localeCompare(b))
                 .map(([doc, total]) => (
                   <Button
                     key={doc}
                     size="sm"
                     variant={getTag === doc ? "baseActive" : "base"}
-                    className="flex-none rounded!"
+                    className="flex-none"
                     onClick={() => setTag(getTag === doc ? "" : doc)}
                   >
                     <span>{doc}</span>

@@ -67,7 +67,7 @@ export default function Stream({ getInfo, path }) {
             </span>
           </div>
 
-          <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded!">
+          <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded-lg">
             {/* --- creator/brand/pornstar --- */}
             <div className="flex items-top">
               <Button
