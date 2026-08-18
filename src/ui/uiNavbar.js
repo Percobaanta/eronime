@@ -33,38 +33,38 @@ export default function Navbar({
     return acc;
   }, {});
 
-  // useEffect(() => {
-  //   const handleContextMenu = (e) => {
-  //     e.preventDefault();
-  //   };
+  useEffect(() => {
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+    };
 
-  //   const handleKeyDown = (e) => {
-  //     const ctrlShiftKey = (key) => {
-  //       return (
-  //         e.ctrlKey && e.shiftKey && e.key.toLowerCase() === key.toLowerCase()
-  //       );
-  //     };
+    const handleKeyDown = (e) => {
+      const ctrlShiftKey = (key) => {
+        return (
+          e.ctrlKey && e.shiftKey && e.key.toLowerCase() === key.toLowerCase()
+        );
+      };
 
-  //     if (
-  //       e.key === "F12" ||
-  //       ctrlShiftKey("I") ||
-  //       ctrlShiftKey("J") ||
-  //       ctrlShiftKey("C") ||
-  //       (e.ctrlKey && e.key.toLowerCase() === "u")
-  //     ) {
-  //       e.preventDefault();
-  //       return false;
-  //     }
-  //   };
+      if (
+        e.key === "F12" ||
+        ctrlShiftKey("I") ||
+        ctrlShiftKey("J") ||
+        ctrlShiftKey("C") ||
+        (e.ctrlKey && e.key.toLowerCase() === "u")
+      ) {
+        e.preventDefault();
+        return false;
+      }
+    };
 
-  //   document.addEventListener("contextmenu", handleContextMenu);
-  //   document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("keydown", handleKeyDown);
 
-  //   return () => {
-  //     document.removeEventListener("contextmenu", handleContextMenu);
-  //     document.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, []);
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   // const uniqueTags = [...new Set(getApi?.flatMap((item) => item.xtags || []))];
 
@@ -104,7 +104,7 @@ export default function Navbar({
                   type="search"
                   aria-label="Search"
                   placeholder="Search..."
-                  className="outline-none w-full text-sm h-full font-semibold bg-transparent border"
+                  className="outline-none w-full text-sm h-full font-semibold bg-transparent"
                   autoFocus
                   onChange={(e) => setSearch(e.target.value)}
                 />

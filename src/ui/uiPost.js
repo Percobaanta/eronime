@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import Button from "@/ui/uiButton";
 
 export default function Post({ path, getApi, getSort, getCreator, getTag }) {
