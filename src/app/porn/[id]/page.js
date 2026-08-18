@@ -4,6 +4,37 @@ import { apiStreamtape } from "@/api/apiStreamtape";
 import { apiPorn } from "@/api/apiPorn";
 import Controller from "@/ui/Controller";
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+
+  const { getApiPorn } = await apiPorn();
+
+  const dataApiPorn = getApiPorn?.find(
+    (doc) => String(doc.id).trim() === String(id).trim()
+  );
+
+  const title = dataApiPorn?.xtitle
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
+  return {
+    title,
+
+    description: `Watch ${title} and discover more related content on Eronime.`,
+
+    alternates: {
+      canonical: `/porn/${dataApiPorn?.xtitle}`,
+    },
+
+    openGraph: {
+      title: `${title} | Eronime`,
+      description: `Watch ${title} on Eronime.`,
+      url: `https://eronime.com/porn/${dataApiPorn?.xtitle}`,
+    },
+  };
+}
+
 export default async function PornInfo({ params }) {
   const { id } = await params;
   const { getApiDoodstream } = await apiDoodstream();

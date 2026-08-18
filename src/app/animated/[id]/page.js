@@ -4,6 +4,37 @@ import { apiStreamtape } from "@/api/apiStreamtape";
 import { apiAnimated } from "@/api/apiAnimated";
 import Controller from "@/ui/Controller";
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+
+  const { getApiAnimated } = await apiAnimated();
+
+  const dataApiAnimated = getApiAnimated?.find(
+    (doc) => String(doc.id).trim() === String(id).trim()
+  );
+
+  const title = dataApiAnimated?.xtitle
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
+  return {
+    title,
+
+    description: `Watch ${title} and discover more related content on Eronime.`,
+
+    alternates: {
+      canonical: `/animated/${dataApiAnimated?.xtitle}`,
+    },
+
+    openGraph: {
+      title: `${title} | Eronime`,
+      description: `Watch ${title} on Eronime.`,
+      url: `https://eronime.com/animated/${dataApiAnimated?.xtitle}`,
+    },
+  };
+}
+
 export default async function AnimatedInfo({ params }) {
   const { id } = await params;
   const { getApiDoodstream } = await apiDoodstream();

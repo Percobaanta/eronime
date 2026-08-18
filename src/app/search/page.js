@@ -4,6 +4,18 @@ import { apiHentai } from "@/api/apiHentai";
 import { apiCosplay } from "@/api/apiCosplay";
 import Controller from "@/ui/Controller";
 
+export const metadata = {
+  title: "Search",
+
+  description:
+    "Search and discover content, categories, and videos on Eronime.",
+
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
+
 export default async function SearchPage() {
   const { getApiPorn } = await apiPorn();
   const { getApiAnimated } = await apiAnimated();

@@ -65,15 +65,14 @@ export default function Gallery({ getInfo, path }) {
               className="w-full! h-min! p-0! overflow-hidden"
               onClick={() => setCurrentIndex(i + 1)}
             >
-              <Image
+              <img
                 src={`/img/${getInfo?.id}/(${i + 1}).webp`}
-                placeholder="blur"
-                blurDataURL="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9Im9rbGNoKDM3JSAwLjAxMyAyODUuODA1KSIvPjwvc3ZnPg=="
-                alt={getInfo?.xtitle || "eronime"}
-                quality={75}
+                alt={getInfo?.xtitle || `${path} content`}
                 width={512}
                 height={512}
-                className="w-full aspect-square object-cover rounded!"
+                loading="lazy"
+                decoding="async"
+                className="w-full aspect-square object-cover rounded bg-zinc-800"
               />
             </Button>
           ))}
@@ -98,7 +97,7 @@ export default function Gallery({ getInfo, path }) {
             </span>
           </div>
 
-          <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded-lg">
+          <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded">
             {/* --- creator/brand/pornstar --- */}
             <div className="flex items-top">
               <Button
@@ -186,7 +185,6 @@ export default function Gallery({ getInfo, path }) {
               href="#"
               variant="primary"
               icon="cloud-arrow-down-fill text-lg"
-              className="w-fit"
               onClick={(e) => {
                 e.preventDefault();
 
@@ -213,8 +211,8 @@ export default function Gallery({ getInfo, path }) {
       {/* -------------------- */}
       {currentIndex !== null && (
         <>
-          <div className="fixed inset-0 z-50 bg-zinc-900 p-3 flex flex-col gap-3 items-center justify-end">
-            <div className="h-[5%] mb-auto flex items-center w-full gap-3 ml-auto">
+          <div className="fixed inset-0 z-50 bg-zinc-900 p-3 flex flex-col gap-4 items-center justify-end">
+            <div className="h-[5%] mb-auto flex items-center w-full gap-2 ml-auto">
               <p className="mr-auto text-xs line-clamp-2">
                 {getInfo?.xtitle} _ ({getInfo?.xdesc} images)
               </p>
@@ -223,7 +221,7 @@ export default function Gallery({ getInfo, path }) {
                 href="#"
                 variant="primary"
                 icon="cloud-arrow-down-fill text-lg"
-                className="w-fit"
+                className="flex-none!"
                 onClick={(e) => {
                   e.preventDefault();
 
@@ -253,14 +251,18 @@ export default function Gallery({ getInfo, path }) {
             <div className="h-[80%] flex items-center">
               <img
                 src={`/img/${getInfo?.id}/(${currentIndex}).webp`}
-                alt={getInfo?.xtitle || "eronime"}
-                className="rounded! max-w-full max-h-full mx-auto object-contain"
+                alt={getInfo?.xtitle || `${path} content`}
+                width={512}
+                height={512}
+                loading="lazy"
+                decoding="async"
+                className="rounded max-w-full max-h-full mx-auto object-contain "
               />
             </div>
 
-            <div className="md:w-4/12 w:full h-[15%] flex items-center gap-3">
+            <div className="md:w-4/12 w:full h-[15%] flex items-center gap-2">
               <Button
-                variant="primary"
+                // variant="primary"
                 icon="chevron-left"
                 className="flex-none"
                 onClick={handlePrev}
@@ -271,15 +273,20 @@ export default function Gallery({ getInfo, path }) {
                   <img
                     key={i}
                     src={`/img/${getInfo?.id}/(${i + 1}).webp`}
+                    alt={getInfo?.xtitle || `${path} content`}
+                    width={512}
+                    height={512}
+                    loading="lazy"
+                    decoding="async"
                     className={`${
                       currentIndex !== i + 1 ? "brightness-40" : "border"
-                    } w-full aspect-square object-cover rounded`}
+                    } w-full aspect-square object-cover rounded bg-zinc-800`}
                   />
                 ))}
               </div>
 
               <Button
-                variant="primary"
+                // variant="primary"
                 icon="chevron-right"
                 className="flex-none"
                 onClick={handleNext}

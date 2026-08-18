@@ -33,38 +33,38 @@ export default function Navbar({
     return acc;
   }, {});
 
-  useEffect(() => {
-    const handleContextMenu = (e) => {
-      e.preventDefault();
-    };
+  // useEffect(() => {
+  //   const handleContextMenu = (e) => {
+  //     e.preventDefault();
+  //   };
 
-    const handleKeyDown = (e) => {
-      const ctrlShiftKey = (key) => {
-        return (
-          e.ctrlKey && e.shiftKey && e.key.toLowerCase() === key.toLowerCase()
-        );
-      };
+  //   const handleKeyDown = (e) => {
+  //     const ctrlShiftKey = (key) => {
+  //       return (
+  //         e.ctrlKey && e.shiftKey && e.key.toLowerCase() === key.toLowerCase()
+  //       );
+  //     };
 
-      if (
-        e.key === "F12" ||
-        ctrlShiftKey("I") ||
-        ctrlShiftKey("J") ||
-        ctrlShiftKey("C") ||
-        (e.ctrlKey && e.key.toLowerCase() === "u")
-      ) {
-        e.preventDefault();
-        return false;
-      }
-    };
+  //     if (
+  //       e.key === "F12" ||
+  //       ctrlShiftKey("I") ||
+  //       ctrlShiftKey("J") ||
+  //       ctrlShiftKey("C") ||
+  //       (e.ctrlKey && e.key.toLowerCase() === "u")
+  //     ) {
+  //       e.preventDefault();
+  //       return false;
+  //     }
+  //   };
 
-    document.addEventListener("contextmenu", handleContextMenu);
-    document.addEventListener("keydown", handleKeyDown);
+  //   document.addEventListener("contextmenu", handleContextMenu);
+  //   document.addEventListener("keydown", handleKeyDown);
 
-    return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener("contextmenu", handleContextMenu);
+  //     document.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, []);
 
   // const uniqueTags = [...new Set(getApi?.flatMap((item) => item.xtags || []))];
 
@@ -73,7 +73,7 @@ export default function Navbar({
       {/* -------------------- */}
       {/* Navbar & Filter */}
       {/* -------------------- */}
-      <div className="bg-zinc-900 border-b border-zinc-700">
+      <div className="bg-zinc-900 border-b border-zinc-700 mb-2">
         <div className="container md:w-11/12 w-full mx-auto p-2!">
           {/* --- navbar --- */}
           <div className="flex md:justify-start justify-between gap-4 mb-4">
@@ -163,7 +163,7 @@ export default function Navbar({
       {/* -------------------- */}
       {getFilter ? (
         <div className="container md:w-11/12 w-full mx-auto p-2">
-          <div className="bg-zinc-900 overflow-hidden rounded-lg">
+          <div className="bg-zinc-900 overflow-hidden rounded">
             <div className="flex flex-col md:max-h-64 max-h-48 overflow-y-scroll">
               {/* --- sort section --- */}
               <div className="grid md:grid-cols-6 grid-cols-2 gap-1 w-full p-3">

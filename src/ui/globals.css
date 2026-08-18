@@ -15,9 +15,14 @@
     display: none;
   }
 
-  /* Outline / Border*/
+  /* Outline / Border */
   .border {
     @apply border border-zinc-700;
+  }
+
+  /* Rounded */
+  .rounded {
+    @apply rounded-lg!;
   }
 
   /* Button */

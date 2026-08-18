@@ -18,7 +18,7 @@ export default function Search({ getApi, getSearch = "" }) {
             key={doc.id}
             href={`/${doc?.xtype}/${doc?.id}`}
             variant="ghost"
-            className="h-min! w-full! flex flex-col justify-start! items-start gap-0! py-2 rounded-lg"
+            className="h-min! w-full! flex flex-col justify-start! items-start gap-0! py-2 rounded"
           >
             <div className="flex flex-row justify-between items-center w-full">
               <p className="capitalize text-white line-clamp-1">

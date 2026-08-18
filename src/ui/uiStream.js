@@ -23,7 +23,7 @@ export default function Stream({ getInfo, path }) {
       {/* -------------------- */}
       {/* Embed video */}
       {/* -------------------- */}
-      <div className="bg-black flex justify-center rounded! shadow drop-shadow md:p-2">
+      <div className="bg-black flex justify-center rounded shadow drop-shadow md:p-2">
         {getInfo?.file_code ? (
           <iframe
             className="md:w-7/12 w-full aspect-video"
@@ -67,7 +67,7 @@ export default function Stream({ getInfo, path }) {
             </span>
           </div>
 
-          <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded-lg">
+          <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded">
             {/* --- creator/brand/pornstar --- */}
             <div className="flex items-top">
               <Button
@@ -143,7 +143,6 @@ export default function Stream({ getInfo, path }) {
               href="#"
               variant="primary"
               icon="cloud-arrow-down-fill text-lg"
-              className="w-fit"
               onClick={(e) => {
                 e.preventDefault();
 

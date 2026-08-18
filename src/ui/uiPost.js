@@ -61,23 +61,22 @@ export default function Post({ path, getApi, getSort, getCreator, getTag }) {
               className="w-full! h-min! active:scale-98"
             >
               <div key={i}>
-                <Image
+                <img
                   src={
                     path === "cosplay"
                       ? `/img/${doc?.id}/(1).webp`
                       : `/img/pah/${doc?.id}.webp`
                   }
-                  placeholder="blur"
-                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9Im9rbGNoKDM3JSAwLjAxMyAyODUuODA1KSIvPjwvc3ZnPg=="
-                  alt={doc?.xtitle || "eronime"}
-                  quality={75}
+                  alt={doc?.xtitle || `${path} content`}
                   width={512}
                   height={512}
+                  loading="lazy"
+                  decoding="async"
                   className={`${
                     path === "hentai" || path === "cosplay"
                       ? "aspect-2/2.75"
                       : "aspect-5/3"
-                  }  w-full object-cover rounded`}
+                  } w-full object-cover rounded bg-zinc-800`}
                 />
               </div>
 
