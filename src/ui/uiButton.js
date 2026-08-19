@@ -35,7 +35,7 @@ export default function Button({
   };
 
   const result = hasText
-    ? `px-4 md:w-fit ${buttonSizes[size]}`
+    ? `md:px-4 px-2 md:w-fit ${buttonSizes[size]}`
     : iconSizes[size];
 
   const baseStyles = [

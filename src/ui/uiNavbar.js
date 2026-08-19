@@ -73,7 +73,7 @@ export default function Navbar({
       {/* -------------------- */}
       {/* Navbar & Filter */}
       {/* -------------------- */}
-      <div className="bg-zinc-900 border-b border-zinc-700 mb-2">
+      <div className="bg-zinc-900 border-b border-zinc-700">
         <div className="container md:w-11/12 w-full mx-auto p-2!">
           {/* --- navbar --- */}
           <div className="flex md:justify-start justify-between gap-4 mb-4">
@@ -81,6 +81,7 @@ export default function Navbar({
               href="/"
               size="lg"
               icon="chat-heart-fill md:text-xl! text-lg! text-yellow-200"
+              aria-label="eronime"
               className="text-white! md:text-2xl! text-xl! font-bold! px-0! lowercase!"
             >
               eronime
@@ -92,6 +93,7 @@ export default function Navbar({
                 size="lg"
                 variant="baseActive"
                 icon="search"
+                aria-label="Search"
                 rounded
                 className="justify-start! md:ml-24 min-w-32! max-w-96! w-full! px-5 border"
               >
@@ -116,8 +118,9 @@ export default function Navbar({
               size="lg"
               variant="baseActive"
               icon="person-fill text-lg!"
-              className="flex-none ml-auto border"
+              title="Bookmark List"
               rounded
+              className="flex-none ml-auto border"
             ></Button>
           </div>
 
@@ -131,8 +134,9 @@ export default function Navbar({
                     key={i}
                     href={`/${doc}`}
                     variant={isActive ? "primary" : "default"}
-                    className="lg:col-span-1 md:col-span-2 col-span-1 w-full!"
+                    aria-label={doc}
                     rounded
+                    className="lg:col-span-1 md:col-span-2 col-span-1 w-full!"
                   >
                     {doc}
                   </Button>
@@ -142,9 +146,12 @@ export default function Navbar({
 
             <Button
               icon="filter"
+              type="button"
+              aria-label="Filter"
+              title="Filter Menu"
+              rounded
               variant={getFilter ? "primary" : "default"}
               onClick={() => setFilter((prev) => !prev)}
-              rounded
               className={
                 view === "stream" ||
                 view === "gallery" ||
@@ -161,8 +168,32 @@ export default function Navbar({
       {/* -------------------- */}
       {/* Menu Filter */}
       {/* -------------------- */}
-      {getFilter ? (
-        <div className="container md:w-11/12 w-full mx-auto p-2">
+      {!getFilter ? (
+        view !== "stream" &&
+        view !== "gallery" &&
+        view !== "search" &&
+        view !== "bookmark" && (
+          <div className="container mx-auto p-2">
+            <div className="flex flex-nowrap overflow-y-scroll scrollbar-rounded gap-2 pb-2">
+              {Object.entries(tagCount)
+                .sort(([a], [b]) => a.localeCompare(b))
+                .map(([doc, total]) => (
+                  <Button
+                    key={doc}
+                    size="sm"
+                    variant={getTag === doc ? "baseActive" : "base"}
+                    className="flex-none"
+                    aria-label={doc}
+                    onClick={() => setTag(getTag === doc ? "" : doc)}
+                  >
+                    <span>{doc}</span>
+                  </Button>
+                ))}
+            </div>
+          </div>
+        )
+      ) : (
+        <div className="container mx-auto p-2">
           <div className="bg-zinc-900 overflow-hidden rounded">
             <div className="flex flex-col md:max-h-64 max-h-48 overflow-y-scroll">
               {/* --- sort section --- */}
@@ -186,8 +217,9 @@ export default function Navbar({
                     key={sortItem.id}
                     size="sm"
                     variant={getSort === sortItem.id ? "baseActive" : "base"}
-                    className="justify-between! w-full!"
                     iconEnd={sortItem.icon}
+                    aria-label={sortItem.label}
+                    className="justify-between! w-full!"
                     onClick={() => setSort(sortItem.id)}
                   >
                     {sortItem.label}
@@ -217,6 +249,7 @@ export default function Navbar({
                       key={doc}
                       size="sm"
                       variant={getCreator === doc ? "baseActive" : "base"}
+                      aria-label={doc}
                       className="justify-between! w-full! flex-none!"
                       onClick={() => setCreator(getCreator === doc ? "" : doc)}
                     >
@@ -242,6 +275,7 @@ export default function Navbar({
                       key={doc}
                       size="sm"
                       variant={getTag === doc ? "baseActive" : "base"}
+                      aria-label={doc}
                       className="justify-between! w-full! flex-none!"
                       onClick={() => setTag(getTag === doc ? "" : doc)}
                     >
@@ -253,37 +287,6 @@ export default function Navbar({
             </div>
           </div>
         </div>
-      ) : (
-        view !== "stream" &&
-        view !== "gallery" &&
-        view !== "search" &&
-        view !== "bookmark" && (
-          <div className="container md:w-11/12 w-full mx-auto p-2">
-            <p className="text-zinc-200 font-bold">
-              <i className="bi bi-compass-fill mr-2"></i> Discover
-            </p>
-
-            <span className="text-zinc-400 text-xs">
-              Watch porn, hentai and cosplay free download.
-            </span>
-
-            <div className="flex flex-nowrap overflow-y-scroll scrollbar-rounded gap-2 py-2">
-              {Object.entries(tagCount)
-                .sort(([a], [b]) => a.localeCompare(b))
-                .map(([doc, total]) => (
-                  <Button
-                    key={doc}
-                    size="sm"
-                    variant={getTag === doc ? "baseActive" : "base"}
-                    className="flex-none"
-                    onClick={() => setTag(getTag === doc ? "" : doc)}
-                  >
-                    <span>{doc}</span>
-                  </Button>
-                ))}
-            </div>
-          </div>
-        )
       )}
     </>
   );
