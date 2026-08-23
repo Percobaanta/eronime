@@ -1,7 +1,7 @@
 "use client";
 
+import { useEffect, useState, useRef } from "react";
 import Button from "@/ui/uiButton";
-import { useEffect, useState } from "react";
 
 export default function Navbar({
   path,
@@ -68,21 +68,29 @@ export default function Navbar({
 
   // const uniqueTags = [...new Set(getApi?.flatMap((item) => item.xtags || []))];
 
+  const scrollRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (!scrollRef.current) return;
+
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -300 : 300,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
-      {/* -------------------- */}
-      {/* Navbar & Filter */}
-      {/* -------------------- */}
       <div className="bg-zinc-900 border-b border-zinc-700">
-        <div className="container md:w-11/12 w-full mx-auto p-2!">
-          {/* --- navbar --- */}
+        <div className="container">
+          {/* --- navbar header --- */}
           <div className="flex md:justify-start justify-between gap-4 mb-4">
             <Button
               href="/"
               size="lg"
-              icon="chat-heart-fill md:text-xl! text-lg! text-yellow-200"
+              icon="chat-heart-fill text-xl! text-yellow-200"
               aria-label="eronime"
-              className="text-white! md:text-2xl! text-xl! font-bold! px-0! lowercase!"
+              className="text-white! md:text-xl! text-xl! font-bold! px-0! lowercase!"
             >
               eronime
             </Button>
@@ -100,7 +108,7 @@ export default function Navbar({
                 Search...
               </Button>
             ) : (
-              <div className="bg-zinc-800 flex gap-3 items-center rounded-full md:ml-24 min-w-32 max-w-80 w-full px-5">
+              <div className="bg-zinc-800 flex gap-3 items-center rounded-full md:ml-24 min-w-32 max-w-80 w-full px-5 border">
                 <i className="bi bi-search text-sm" aria-hidden="true" />
                 <input
                   type="search"
@@ -124,8 +132,8 @@ export default function Navbar({
             ></Button>
           </div>
 
-          {/* --- page button --- */}
-          <div className="flex flex-row gap-2">
+          {/* --- navigation menu --- */}
+          <nav className="flex flex-row gap-2">
             <div className="grid md:grid-cols-12 grid-cols-4 grow gap-2">
               {["porn", "animated", "hentai", "cosplay"].map((doc, i) => {
                 const isActive = path === doc;
@@ -161,39 +169,12 @@ export default function Navbar({
                   : "flex-none!"
               }
             ></Button>
-          </div>
+          </nav>
         </div>
       </div>
 
-      {/* -------------------- */}
-      {/* Menu Filter */}
-      {/* -------------------- */}
-      {!getFilter ? (
-        view !== "stream" &&
-        view !== "gallery" &&
-        view !== "search" &&
-        view !== "bookmark" && (
-          <div className="container mx-auto p-2">
-            <div className="flex flex-nowrap overflow-y-scroll scrollbar-rounded gap-2 pb-2">
-              {Object.entries(tagCount)
-                .sort(([a], [b]) => a.localeCompare(b))
-                .map(([doc, total]) => (
-                  <Button
-                    key={doc}
-                    size="sm"
-                    variant={getTag === doc ? "baseActive" : "base"}
-                    className="flex-none"
-                    aria-label={doc}
-                    onClick={() => setTag(getTag === doc ? "" : doc)}
-                  >
-                    <span>{doc}</span>
-                  </Button>
-                ))}
-            </div>
-          </div>
-        )
-      ) : (
-        <div className="container mx-auto p-2">
+      {getFilter && (
+        <div className="container">
           <div className="bg-zinc-900 overflow-hidden rounded">
             <div className="flex flex-col md:max-h-64 max-h-48 overflow-y-scroll">
               {/* --- sort section --- */}

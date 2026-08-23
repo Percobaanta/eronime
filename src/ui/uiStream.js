@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Button from "@/ui/uiButton";
+import Heading from "@/ui/uiHeading";
+import Label from "@/ui/uiLabel";
 
 export default function Stream({ getInfo, path }) {
   const [bookmarks, setBookmarks] = useState([]);
@@ -20,10 +22,7 @@ export default function Stream({ getInfo, path }) {
 
   return (
     <>
-      {/* -------------------- */}
-      {/* Embed video */}
-      {/* -------------------- */}
-      <div className="bg-black flex justify-center rounded shadow drop-shadow md:p-2">
+      <div className="bg-black flex justify-center rounded shadow drop-shadow md:p-2 mb-4">
         {getInfo?.file_code ? (
           <iframe
             className="md:w-7/12 w-full aspect-video"
@@ -31,6 +30,8 @@ export default function Stream({ getInfo, path }) {
             scrolling="no"
             frameBorder="0"
             allowFullScreen={true}
+            title="Embedded content"
+            loading="lazy"
           ></iframe>
         ) : getInfo?.linkid ? (
           <iframe
@@ -39,6 +40,8 @@ export default function Stream({ getInfo, path }) {
             scrolling="no"
             frameBorder="0"
             allowFullScreen={true}
+            title="Embedded content"
+            loading="lazy"
           ></iframe>
         ) : (
           <div className="flex flex-col items-center justify-center w-full my-24">
@@ -48,121 +51,111 @@ export default function Stream({ getInfo, path }) {
         )}
       </div>
 
-      {/* -------------------- */}
-      {/* Detail Video */}
-      {/* -------------------- */}
-      <div className="container md:w-11/12 w-full mx-auto p-2">
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <p className="text-zinc-200 font-semibold capitalize">
-              {getInfo?.xtitle}
-            </p>
+      <section>
+        <div className="flex flex-col gap-1">
+          <Heading title={getInfo?.xtitle} className="mb-0!"></Heading>
 
-            <span className="text-base-400 text-xs">
-              <i className="bi bi-eye-fill mr-2" />
-
-              {getInfo?.id
+          <Label
+            icon={"eye-fill"}
+            title={
+              getInfo?.id
                 ? parseInt(getInfo.id.slice(-4), 10).toLocaleString("en-US")
-                : 0}
-            </span>
-          </div>
+                : 0
+            }
+          ></Label>
+        </div>
 
-          <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded">
-            {/* --- creator/brand/pornstar --- */}
-            <div className="flex items-top">
-              <Button
-                size="sm"
-                variant="baseActive"
-                icon="person-vcard-fill"
-                className="flex-none! cursor-default!"
-              ></Button>
+        <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded">
+          {/* --- creator/brand/pornstar --- */}
+          <div className="flex gap-4 items-top">
+            <Button
+              size="sm"
+              variant="baseActive"
+              icon="person-vcard-fill"
+              className="flex-none! cursor-default!"
+            ></Button>
 
-              <div className="flex flex-wrap">
-                {getInfo?.xcreator.map((doc, i) => (
-                  <Button key={i} size="sm" className="cursor-default!">
-                    {doc}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            {/* --- tags --- */}
-            <div className="flex items-top">
-              <Button
-                size="sm"
-                variant="baseActive"
-                icon="tag-fill"
-                className="flex-none! cursor-default!"
-              ></Button>
-
-              <div className="flex flex-wrap">
-                {getInfo?.xtags.map((doc, i) => (
-                  <Button key={i} size="sm" className="cursor-default!">
-                    {doc}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            {/* --- uploaded --- */}
-            <div className="flex items-top">
-              <Button
-                size="sm"
-                variant="baseActive"
-                icon={"clock-fill"}
-                className="flex-none! cursor-default!"
-              ></Button>
-
-              <div className="flex flex-wrap">
-                <Button size="sm" className="cursor-default!">
-                  <span>
-                    {getInfo?.id && !isNaN(Number(getInfo.id))
-                      ? new Date(Number(getInfo.id)).toISOString().split("T")[0]
-                      : ""}
-                  </span>
-                </Button>
-              </div>
+            <div className="flex flex-wrap gap-2">
+              {getInfo?.xcreator.map((doc, i) => (
+                <Label key={i} title={doc}></Label>
+              ))}
             </div>
           </div>
 
-          <div className="flex gap-2">
+          {/* --- tags --- */}
+          <div className="flex gap-4 items-top">
             <Button
-              variant={bookmarks.includes(getInfo.id) ? "primary" : "base"}
-              icon="bookmark-fill"
-              onClick={() => {
-                const updated = bookmarks.includes(getInfo.id)
-                  ? bookmarks.filter((id) => id !== getInfo.id)
-                  : [...bookmarks, getInfo.id];
+              size="sm"
+              variant="baseActive"
+              icon="tag-fill"
+              className="flex-none! cursor-default!"
+            ></Button>
 
-                setBookmarks(updated);
-                localStorage.setItem("bookmark", JSON.stringify(updated));
-              }}
-            />
+            <div className="flex flex-wrap gap-2">
+              {getInfo?.xtags.map((doc, i) => (
+                <Label key={i} title={doc}></Label>
+              ))}
+            </div>
+          </div>
 
+          {/* --- uploaded --- */}
+          <div className="flex gap-4 items-top">
             <Button
-              href="#"
-              variant="primary"
-              icon="cloud-arrow-down-fill text-lg"
-              onClick={(e) => {
-                e.preventDefault();
+              size="sm"
+              variant="baseActive"
+              icon={"clock-fill"}
+              className="flex-none! cursor-default!"
+            ></Button>
 
-                const value = getInfo?.download_url || getInfo?.link || "";
-
-                const encoded = btoa(unescape(encodeURIComponent(value)));
-
-                sessionStorage.setItem("d", encoded);
-
-                const fakeUrl =
-                  fakeUrls[Math.floor(Math.random() * fakeUrls.length)];
-
-                window.location.href = fakeUrl;
-              }}
-            >
-              Download (HD)
-            </Button>
+            <div className="flex flex-wrap gap-2">
+              <Label
+                title={
+                  getInfo?.id && !isNaN(Number(getInfo.id))
+                    ? new Date(Number(getInfo.id)).toISOString().split("T")[0]
+                    : ""
+                }
+              ></Label>
+            </div>
           </div>
         </div>
-      </div>
+
+        <div className="flex gap-2">
+          <Button
+            variant={bookmarks.includes(getInfo.id) ? "primary" : "base"}
+            icon="bookmark-fill"
+            onClick={() => {
+              const updated = bookmarks.includes(getInfo.id)
+                ? bookmarks.filter((id) => id !== getInfo.id)
+                : [...bookmarks, getInfo.id];
+
+              setBookmarks(updated);
+              localStorage.setItem("bookmark", JSON.stringify(updated));
+            }}
+          />
+
+          <Button
+            href="#"
+            variant="primary"
+            icon="cloud-arrow-down-fill text-lg"
+            onClick={(e) => {
+              e.preventDefault();
+
+              const value = getInfo?.download_url || getInfo?.link || "";
+
+              const encoded = btoa(unescape(encodeURIComponent(value)));
+
+              sessionStorage.setItem("d", encoded);
+
+              const fakeUrl =
+                fakeUrls[Math.floor(Math.random() * fakeUrls.length)];
+
+              window.location.href = fakeUrl;
+            }}
+          >
+            Download (HD)
+          </Button>
+        </div>
+      </section>
     </>
   );
 }

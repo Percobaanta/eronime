@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import Button from "@/ui/uiButton";
+import Card from "@/ui/uiCard";
+import Link from "next/link";
+import Heading from "@/ui/uiHeading";
 
 export default function Search({ getApi, getSearch = "" }) {
   const [visibleCount, setVisibleCount] = useState(15);
@@ -11,44 +14,26 @@ export default function Search({ getApi, getSearch = "" }) {
   );
 
   return (
-    <div className="container md:w-11/12 w-full mx-auto p-2">
-      <div className="flex flex-col w-full">
-        {searchData.slice(0, visibleCount).map((doc) => (
-          <Button
-            key={doc.id}
-            href={`/${doc?.xtype}/${doc?.id}`}
-            variant="ghost"
-            className="h-min! w-full! flex flex-col justify-start! items-start gap-0! py-2 rounded"
-          >
-            <div className="flex flex-row justify-between items-center w-full">
-              <p className="capitalize text-white line-clamp-1">
-                {doc?.xtitle}
-              </p>
+    <section>
+      <Heading icon={"search"} title={"Search Result"}></Heading>
 
-              <small className="text-zinc-400 flex gap-1">
-                <i className="bi bi-eye-fill" aria-hidden="true" />
-                <span>
-                  {doc?.id
-                    ? parseInt(doc.id.slice(-4), 10).toLocaleString("en-US")
-                    : 0}
-                </span>
-              </small>
-            </div>
-
-            <small className="capitalize text-zinc-500 mt-1">
-              {doc?.xtype}
-            </small>
-          </Button>
+      <div className="grid gap-x-2 gap-y-4 grid-cols-3 md:grid-cols-6 mb-6">
+        {searchData.map((doc) => (
+          <article key={doc.id}>
+            <Card
+              href={`/${doc.id}`}
+              src={
+                doc?.xtype === "cosplay"
+                  ? `/img/${doc?.id}/(1).webp`
+                  : `/img/pah/${doc?.id}.webp`
+              }
+              type={doc.xtype}
+              variant={"potrait"}
+              title={doc.xtitle}
+            ></Card>
+          </article>
         ))}
-
-        {visibleCount < searchData.length && (
-          <div className="flex justify-center my-10">
-            <Button onClick={() => setVisibleCount((prev) => prev + 15)}>
-              Load More
-            </Button>
-          </div>
-        )}
       </div>
-    </div>
+    </section>
   );
 }

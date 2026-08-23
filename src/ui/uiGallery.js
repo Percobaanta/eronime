@@ -1,8 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Button from "@/ui/uiButton";
-import { useEffect, useState } from "react";
+import Heading from "@/ui/uiHeading";
+import Label from "@/ui/uiLabel";
+import Icon from "@/ui/uiIcon";
 
 export default function Gallery({ getInfo, path }) {
   const [currentIndex, setCurrentIndex] = useState(null);
@@ -54,161 +57,130 @@ export default function Gallery({ getInfo, path }) {
 
   return (
     <>
-      {/* -------------------- */}
-      {/* Gallery Image */}
-      {/* -------------------- */}
-      <div className="container md:w-11/12 w-full mx-auto p-2">
-        <div className="grid md:grid-cols-8 grid-cols-4 gap-2">
-          {Array.from({ length: 8 }, (_, i) => (
-            <Button
-              key={i}
-              className="w-full! h-min! p-0! overflow-hidden"
-              onClick={() => setCurrentIndex(i + 1)}
-            >
-              <img
-                src={`/img/${getInfo?.id}/(${i + 1}).webp`}
-                alt={getInfo?.xtitle || `${path} content`}
-                width={512}
-                height={512}
-                loading="lazy"
-                decoding="async"
-                className="w-full aspect-square object-cover rounded bg-zinc-800"
-              />
-            </Button>
-          ))}
-        </div>
+      <div className="grid md:grid-cols-8 grid-cols-4 gap-2">
+        {Array.from({ length: 8 }, (_, i) => (
+          <Button
+            key={i}
+            className="w-full! h-min! p-0! overflow-hidden"
+            onClick={() => setCurrentIndex(i + 1)}
+          >
+            <img
+              src={`/img/${getInfo?.id}/(${i + 1}).webp`}
+              alt={getInfo?.xtitle || `${path} content`}
+              width={512}
+              height={512}
+              loading="lazy"
+              decoding="async"
+              className="w-full aspect-square object-cover rounded bg-zinc-800"
+            />
+          </Button>
+        ))}
       </div>
 
-      {/* -------------------- */}
-      {/* Detail Image */}
-      {/* -------------------- */}
-      <div className="container md:w-11/12 w-full mx-auto p-2">
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <p className="text-zinc-200 font-semibold capitalize">
-              {getInfo?.xtitle}
-            </p>
+      <section>
+        <div className="flexCol">
+          <Heading title={getInfo?.xtitle} className="mb-0!"></Heading>
 
-            <span className="text-base-400 text-xs">
-              <i className="bi bi-eye-fill mr-2" />
-              {getInfo?.id
+          <Label
+            icon={"eye-fill"}
+            title={
+              getInfo?.id
                 ? parseInt(getInfo.id.slice(-4), 10).toLocaleString("en-US")
-                : 0}
-            </span>
-          </div>
+                : 0
+            }
+          ></Label>
+        </div>
 
-          <div className="bg-zinc-900 flex flex-col gap-4 p-4 rounded">
-            {/* --- creator/brand/pornstar --- */}
-            <div className="flex items-top">
-              <Button
-                size="sm"
-                variant="baseActive"
-                icon="person-vcard-fill"
-                className="flex-none! cursor-default!"
-              />
-              <div className="flex flex-wrap">
-                {getInfo?.xcreator?.map((doc, i) => (
-                  <Button key={i} size="sm" className="cursor-default!">
-                    {doc}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            {/* --- tags --- */}
-            <div className="flex items-top">
-              <Button
-                size="sm"
-                variant="baseActive"
-                icon="tag-fill"
-                className="flex-none! cursor-default!"
-              />
-              <div className="flex flex-wrap">
-                {getInfo?.xtags?.map((doc, i) => (
-                  <Button key={i} size="sm" className="cursor-default!">
-                    {doc}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            {/* --- images count --- */}
-            <div className="flex items-top">
-              <Button
-                size="sm"
-                variant="baseActive"
-                icon="images"
-                className="flex-none! cursor-default!"
-              />
-              <div className="flex flex-wrap">
-                <Button size="sm" className="cursor-default!">
-                  {getInfo?.xdesc} images
-                </Button>
-              </div>
-            </div>
-
-            {/* --- uploaded --- */}
-            <div className="flex items-top">
-              <Button
-                size="sm"
-                variant="baseActive"
-                icon="clock-fill"
-                className="flex-none cursor-default!"
-              />
-              <div className="flex flex-wrap">
-                <Button size="sm" className="cursor-default!">
-                  <span>
-                    {getInfo?.id && !isNaN(Number(getInfo.id))
-                      ? new Date(Number(getInfo.id)).toISOString().split("T")[0]
-                      : ""}
-                  </span>
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex gap-2">
-            <Button
-              variant={bookmarks.includes(getInfo.id) ? "primary" : "base"}
-              icon="bookmark-fill"
-              onClick={() => {
-                const updated = bookmarks.includes(getInfo.id)
-                  ? bookmarks.filter((id) => id !== getInfo.id)
-                  : [...bookmarks, getInfo.id];
-
-                setBookmarks(updated);
-                localStorage.setItem("bookmark", JSON.stringify(updated));
-              }}
+        <div className="flexCol bgPrimary gap-4! p-4!">
+          {/* --- creator/brand/pornstar --- */}
+          <div className="flexRow items-center gap-4!">
+            <Icon
+              icon={"person-vcard-fill"}
+              variant={"baseActive"}
+              size={"sm"}
             />
 
-            <Button
-              href="#"
-              variant="primary"
-              icon="cloud-arrow-down-fill text-lg"
-              onClick={(e) => {
-                e.preventDefault();
+            <div className="flexWrap">
+              {getInfo?.xcreator?.map((doc, i) => (
+                <Label key={i} title={doc}></Label>
+              ))}
+            </div>
+          </div>
 
-                const value = getInfo?.xdownload;
+          {/* --- tags --- */}
+          <div className="flexRow items-center gap-4!">
+            <Icon icon={"tag-fill"} variant={"baseActive"} size={"sm"} />
 
-                const encoded = btoa(unescape(encodeURIComponent(value)));
+            <div className="flexWrap">
+              {getInfo?.xtags?.map((doc, i) => (
+                <Label key={i} title={doc}></Label>
+              ))}
+            </div>
+          </div>
 
-                sessionStorage.setItem("d", encoded);
+          {/* --- images count --- */}
+          <div className="flexRow items-center gap-4!">
+            <Icon icon={"images"} variant={"baseActive"} size={"sm"} />
 
-                const fakeUrl =
-                  fakeUrls[Math.floor(Math.random() * fakeUrls.length)];
+            <div className="flexWrap">
+              <Label title={`${getInfo?.xdesc} images`}></Label>
+            </div>
+          </div>
 
-                window.location.href = fakeUrl;
-              }}
-            >
-              Download (HD)
-            </Button>
+          {/* --- uploaded --- */}
+          <div className="flexRow items-center gap-4!">
+            <Icon icon={"clock-fill"} variant={"baseActive"} size={"sm"} />
+
+            <div className="flexWrap">
+              <Label
+                title={
+                  getInfo?.id && !isNaN(Number(getInfo.id))
+                    ? new Date(Number(getInfo.id)).toISOString().split("T")[0]
+                    : ""
+                }
+              ></Label>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* -------------------- */}
-      {/* Carousel Image */}
-      {/* -------------------- */}
+        <div className="flexRow">
+          <Button
+            variant={bookmarks.includes(getInfo.id) ? "primary" : "base"}
+            icon="bookmark-fill"
+            onClick={() => {
+              const updated = bookmarks.includes(getInfo.id)
+                ? bookmarks.filter((id) => id !== getInfo.id)
+                : [...bookmarks, getInfo.id];
+
+              setBookmarks(updated);
+              localStorage.setItem("bookmark", JSON.stringify(updated));
+            }}
+          />
+
+          <Button
+            href="#"
+            variant="primary"
+            icon="cloud-arrow-down-fill text-lg"
+            onClick={(e) => {
+              e.preventDefault();
+
+              const value = getInfo?.xdownload;
+
+              const encoded = btoa(unescape(encodeURIComponent(value)));
+
+              sessionStorage.setItem("d", encoded);
+
+              const fakeUrl =
+                fakeUrls[Math.floor(Math.random() * fakeUrls.length)];
+
+              window.location.href = fakeUrl;
+            }}
+          >
+            Download (HD)
+          </Button>
+        </div>
+      </section>
+
       {currentIndex !== null && (
         <>
           <div className="fixed inset-0 z-50 bg-zinc-900 p-3 flex flex-col gap-4 items-center justify-end">

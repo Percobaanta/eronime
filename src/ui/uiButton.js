@@ -66,7 +66,7 @@ export default function Button({
   }
 
   return (
-    <button className={baseStyles} {...props}>
+    <button type="button" className={baseStyles} {...props}>
       {content}
     </button>
   );

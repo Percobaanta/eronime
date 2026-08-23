@@ -7,6 +7,7 @@ import Search from "@/ui/uiSearch";
 import Bookmark from "@/ui/uiBookmark";
 import Gallery from "@/ui/uiGallery";
 import Stream from "@/ui/uiStream";
+import Button from "@/ui/uiButton";
 
 export default function Controller({ getApi, getInfo, path, view }) {
   const [getSearch, setSearch] = useState("");
@@ -18,152 +19,195 @@ export default function Controller({ getApi, getInfo, path, view }) {
     <>
       {path === "porn" && view === "post" && (
         <>
-          <Navbar
-            path={path}
-            view={view}
-            setSearch={setSearch}
-            getApi={getApi}
-            getSort={getSort}
-            setSort={setSort}
-            getCreator={getCreator}
-            setCreator={setCreator}
-            getTag={getTag}
-            setTag={setTag}
-          />
+          <header>
+            <Navbar
+              path={path}
+              view={view}
+              setSearch={setSearch}
+              getApi={getApi}
+              getSort={getSort}
+              setSort={setSort}
+              getCreator={getCreator}
+              setCreator={setCreator}
+              getTag={getTag}
+              setTag={setTag}
+            />
+          </header>
 
-          <Post
-            path={path}
-            getApi={getApi}
-            getSort={getSort}
-            getCreator={getCreator}
-            getTag={getTag}
-          />
+          <main>
+            <Post
+              path={path}
+              view={view}
+              getApi={getApi}
+              getSort={getSort}
+              getCreator={getCreator}
+              getTag={getTag}
+            />
+          </main>
         </>
       )}
 
       {path === "animated" && view === "post" && (
         <>
-          <Navbar
-            path={path}
-            setSearch={setSearch}
-            getApi={getApi}
-            getSort={getSort}
-            setSort={setSort}
-            getCreator={getCreator}
-            setCreator={setCreator}
-            getTag={getTag}
-            setTag={setTag}
-          />
+          <header>
+            <Navbar
+              path={path}
+              setSearch={setSearch}
+              getApi={getApi}
+              getSort={getSort}
+              setSort={setSort}
+              getCreator={getCreator}
+              setCreator={setCreator}
+              getTag={getTag}
+              setTag={setTag}
+            />
+          </header>
 
-          <Post
-            path={path}
-            getApi={getApi}
-            getSort={getSort}
-            getCreator={getCreator}
-            getTag={getTag}
-          />
+          <main>
+            <Post
+              path={path}
+              getApi={getApi}
+              getSort={getSort}
+              getCreator={getCreator}
+              getTag={getTag}
+            />
+          </main>
         </>
       )}
 
       {path === "hentai" && view === "post" && (
         <>
-          <Navbar
-            path={path}
-            setSearch={setSearch}
-            getApi={getApi}
-            getSort={getSort}
-            setSort={setSort}
-            getCreator={getCreator}
-            setCreator={setCreator}
-            getTag={getTag}
-            setTag={setTag}
-          />
+          {/* <header>
+            <Navbar
+              path={path}
+              setSearch={setSearch}
+              getApi={getApi}
+              getSort={getSort}
+              setSort={setSort}
+              getCreator={getCreator}
+              setCreator={setCreator}
+              getTag={getTag}
+              setTag={setTag}
+            />
+          </header>
 
-          <Post
-            path={path}
-            getApi={getApi}
-            getSort={getSort}
-            getCreator={getCreator}
-            getTag={getTag}
-          />
+          <main>
+            <Post
+              path={path}
+              getApi={getApi}
+              getSort={getSort}
+              getCreator={getCreator}
+              getTag={getTag}
+            />
+          </main> */}
+
+          <div className="min-h-[70vh] flex flex-col items-center justify-center gap-4">
+            <h1 className="text-6xl text-center font-bold">Hentai Page</h1>
+
+            <p className="text-zinc-400">Under Maintenance</p>
+
+            <Button href="/" variant="primary" className="px-6">
+              Back
+            </Button>
+          </div>
         </>
       )}
 
       {path === "cosplay" && view === "post" && (
         <>
-          <Navbar
-            path={path}
-            setSearch={setSearch}
-            getApi={getApi}
-            getSort={getSort}
-            setSort={setSort}
-            getCreator={getCreator}
-            setCreator={setCreator}
-            getTag={getTag}
-            setTag={setTag}
-          />
+          <header>
+            <Navbar
+              path={path}
+              setSearch={setSearch}
+              getApi={getApi}
+              getSort={getSort}
+              setSort={setSort}
+              getCreator={getCreator}
+              setCreator={setCreator}
+              getTag={getTag}
+              setTag={setTag}
+            />
+          </header>
 
-          <Post
-            path={path}
-            getApi={getApi}
-            getSort={getSort}
-            getCreator={getCreator}
-            getTag={getTag}
-          />
+          <main>
+            <Post
+              path={path}
+              getApi={getApi}
+              getSort={getSort}
+              getCreator={getCreator}
+              getTag={getTag}
+            />
+          </main>
         </>
       )}
 
       {path === "search" && view === "search" && (
         <>
-          <Navbar
-            path={path}
-            view={view}
-            setSearch={setSearch}
-            getApi={getApi}
-            getSort={getSort}
-            setSort={setSort}
-            getCreator={getCreator}
-            setCreator={setCreator}
-            getTag={getTag}
-            setTag={setTag}
-          />
+          <header>
+            <Navbar
+              path={path}
+              view={view}
+              setSearch={setSearch}
+              getApi={getApi}
+              getSort={getSort}
+              setSort={setSort}
+              getCreator={getCreator}
+              setCreator={setCreator}
+              getTag={getTag}
+              setTag={setTag}
+            />
+          </header>
 
-          <Search
-            getApi={getApi}
-            getSearch={getSearch}
-            getSort={getSort}
-            getCreator={getCreator}
-            getTag={getTag}
-          />
+          <main>
+            <Search
+              getApi={getApi}
+              getSearch={getSearch}
+              getSort={getSort}
+              getCreator={getCreator}
+              getTag={getTag}
+            />
+          </main>
         </>
       )}
 
       {path === "bookmark" && view === "bookmark" && (
         <>
-          <Navbar path={path} view={view} getApi={getApi} />
+          <header>
+            <Navbar path={path} view={view} getApi={getApi} />
+          </header>
 
-          <Bookmark getApi={getApi} />
+          <main>
+            <Bookmark getApi={getApi} />
+          </main>
         </>
       )}
 
       {(path === "porn" || path === "animated" || path === "hentai") &&
         view === "stream" && (
           <>
-            <Navbar path={path} view={view} getApi={getApi} />
+            <header>
+              <Navbar path={path} view={view} getApi={getApi} />
+            </header>
 
-            <Stream getInfo={getInfo} />
+            <main>
+              <Stream getInfo={getInfo} />
 
-            <Post path={path} getApi={getApi} />
+              <Post path={path} view={view} getApi={getApi} />
+            </main>
           </>
         )}
 
       {path === "cosplay" && view === "gallery" && (
         <>
-          <Navbar path={path} view={view} getApi={getApi} />
+          <header>
+            <Navbar path={path} view={view} getApi={getApi} />
+          </header>
 
-          <Gallery path={path} getInfo={getInfo} />
+          <main>
+            <Gallery path={path} getInfo={getInfo} />
 
-          <Post path={path} getApi={getApi} />
+            <Post path={path} getApi={getApi} />
+          </main>
         </>
       )}
     </>

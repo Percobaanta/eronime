@@ -75,9 +75,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   return (
     <html lang="en" className={`${googleSansAlt.className} h-full antialiased`}>
-      <body>
-        <div>{children}</div>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
