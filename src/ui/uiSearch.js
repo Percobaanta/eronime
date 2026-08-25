@@ -21,7 +21,7 @@ export default function Search({ getApi, getSearch = "" }) {
         {searchData.map((doc) => (
           <article key={doc.id}>
             <Card
-              href={`/${doc.id}`}
+              href={`/${doc.xtype}/${doc.id}`}
               src={
                 doc?.xtype === "cosplay"
                   ? `/img/${doc?.id}/(1).webp`
